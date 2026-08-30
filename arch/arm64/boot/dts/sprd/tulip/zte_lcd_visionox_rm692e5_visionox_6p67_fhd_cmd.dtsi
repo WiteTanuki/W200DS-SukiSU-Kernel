@@ -1,0 +1,241 @@
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			lcds {
+				lcd_visionox_rm692e5_visionox_mipi_hdplus_visionox: lcd_visionox_rm692e5_visionox_mipi_hdplus_visionox {
+					zte,lcd-init-code-version = "20230803";
+
+					zte,lcd-backlight-register-bit-length = <0x0B>;
+					zte,lcm_backlight_curve_mode = "lcd_brightness_max_450_lux";
+					zte,lcd-backlight-min-value = <0x01>;
+					zte,lcd_bl_vsp_vsn_voltage = <0x14>;
+					zte,lcd-disable-ssc;
+					zte,panel-name = "lcd_visionox_rm692e5_visionox_mipi_hdplus_visionox";
+					zte,lcd-delay-open-bl-value = <51>;
+					zte,lcd-version-v000;
+					zte,lcd-disable-mipi-hop;
+					zte,lcd-reset-down-before-vsp;
+
+					sprd,dsi-work-mode = <0>;
+					sprd,dsi-lane-number = <4>;
+					sprd,dsi-color-format = "dsc";
+					sprd,dpi-actual-pclk = <384000000>;
+
+					sprd,phy-bit-clock = <1000000>;
+					sprd,phy-escape-clock = <20000>;/* kHz */
+					sprd,oled-panel-type;
+
+					sprd,width-mm = <69527>;
+					sprd,height-mm = <154560>;
+
+					sprd,esd-check-enable = <1>;/* 0:close , 1:open */
+					sprd,esd-check-mode = <0>;/* 0:REG ,1:TE  */
+					sprd,esd-check-period = <2000>;
+					sprd,esd-check-register = <0x0A>;
+					sprd,esd-check-value = <0x9C>;
+
+					sprd,slice-width = <540>;
+					sprd,slice-height = <20>;
+					sprd,output-bpc = <8>;
+					sprd,dsc-enable = <1>;
+					sprd,dual-dsi-enable = <0>;
+
+					/* vrr config parameters */
+					sprd,vrr-enabled;
+					sprd,vrr-max-layers = <2>;
+					sprd,cmd-mode-vrr-enabled;
+					/*sprd,need-vblank-adj;
+					sprd,vblank-adj-val = <27>;*/
+					sprd,supported-vrefresh-count = <3>;
+					sprd,supported-vrefresh-rate = <120 90 60>;
+					sprd,vrefresh-cmd-prefix = [
+						15 00 00 02 fe 40
+					];
+					sprd,vrefresh-rate-cmd = [
+						15 00 00 02 bd 06
+						15 00 00 02 bd 05
+						15 00 00 02 bd 00
+					];
+					sprd,vrefresh-cmd-suffix = [
+						15 00 00 02 fe 00
+					];
+
+					sprd,reset-on-sequence = <1 5>, <0 10>, <1 35>;
+					sprd,reset-off-sequence = <0 20>;
+
+					sprd,use-dcs-write;
+					sprd,initial-command = [
+						15 00 00 02 FE A1
+						15 00 00 02 B3 5F
+						15 00 00 02 FE 40
+						15 00 00 02 40 0D
+						15 00 00 02 FE A0
+						15 00 00 02 40 38
+						15 00 00 02 41 35
+						/*ACL code */
+						15 00 00 02 FE 00
+						15 00 00 02 55 00
+						15 00 00 02 FE 34
+						15 00 00 02 47 03
+						15 00 00 02 48 00
+						15 00 00 02 00 00
+						15 00 00 02 FE 34
+						15 00 00 02 9F 38
+						15 00 00 02 A0 04
+						15 00 00 02 1E 00
+						15 00 00 02 1F 00
+						15 00 00 02 20 00
+						15 00 00 02 22 00
+						15 00 00 02 21 70
+						15 00 00 02 23 F8
+						15 00 00 02 24 77
+						15 00 00 02 25 F8
+						15 00 00 02 26 F8
+						15 00 00 02 2F 00
+						15 00 00 02 30 00
+						15 00 00 02 31 00
+						15 00 00 02 32 00
+						15 00 00 02 33 00
+						15 00 00 02 34 00
+						15 00 00 02 35 00
+						15 00 00 02 36 4C
+						15 00 00 02 37 00
+						15 00 00 02 38 E9
+						15 00 00 02 39 01
+						15 00 00 02 3A 53
+						15 00 00 02 3B 00
+						15 00 00 02 3D 00
+						15 00 00 02 3F 00
+						15 00 00 02 40 00
+						15 00 00 02 41 00
+						15 00 00 02 42 00
+						/*init code */
+						15 00 00 02 FE 12
+						15 05 00 02 83 00 /* original color gamut */
+
+						15 00 00 02 FE 40
+						15 00 00 02 BD 00
+						/* DVDD 1.2V */
+						15 00 00 02 90 46
+						15 00 00 02 40 0D
+						/* LVD code*/
+						15 00 00 02 FE 42
+						15 00 00 02 68 02
+						15 00 00 02 FE D4
+						15 00 00 02 40 02
+						15 00 00 02 FE FD
+						15 00 00 02 80 06
+						15 00 00 02 83 00
+						15 00 00 02 FE A0
+						15 00 00 02 06 32
+						15 00 00 02 6E 03
+						15 00 00 02 FE D0
+						15 00 00 02 11 75
+						15 00 00 02 92 03
+						15 00 00 02 FE A1
+						15 00 00 02 CD 6B
+						15 00 00 02 CE BB
+						15 00 00 02 FE D1
+						15 00 00 02 B4 01
+						15 00 00 02 FE 38
+						15 00 00 02 17 0F
+						15 00 00 02 18 0F
+						15 00 00 02 FE 42
+						15 00 00 02 21 44
+
+						15 00 00 02 FE 00
+						15 00 00 02 FA 01
+						15 00 00 02 C2 08
+						15 00 00 02 35 00
+						39 00 00 03 51 00 00
+						39 00 00 03 44 04 b0
+						05 50 00 01 11
+						05 0A 00 01 29
+					];
+
+					sprd,sleep-in-command = [
+						15 00 00 02 FE 00
+						39 00 00 03 51 00 00
+						15 C8 00 01 28
+						15 0A 00 01 10
+						];
+					sprd,sleep-out-command = [
+						05 50 00 01 11
+						05 0A 00 01 29
+						];
+					sprd,doze-in-command = [
+						15 00 00 02 FE A0
+						15 00 00 02 25 C0
+						15 00 00 02 FE 00
+						05 14 00 01 39
+						39 0A 00 03 44 08 00
+						];
+					sprd,doze-out-command = [
+						15 14 00 02 FE 00
+						39 0A 00 03 51 00 00
+						05 0A 00 01 38
+						15 00 00 02 FE A0
+						15 00 00 02 25 40
+						15 00 00 02 FE 00
+						39 0A 00 03 44 04 b0
+						];
+					zte,dimming-open-command = [
+						15 00 00 02 FE 00
+						15 00 00 02 53 2c
+					];
+					zte,dimming-close-command = [
+						15 00 00 02 FE 00
+						15 00 00 02 53 24
+					];
+					display-timings {
+						native-mode = <&lcd_visionox_rm692e5_visionox_fhd_timing0>;
+						lcd_visionox_rm692e5_visionox_fhd_timing0: timing0 {
+							clock-frequency = <376000000>;
+							hactive = <1080>;
+							vactive = <2400>;
+							hback-porch = <100>;
+							hfront-porch = <92>;
+							hsync-len = <8>;
+							vsync-len = <20>;
+							vback-porch = <12>;
+							vfront-porch = <2460>;
+						};
+
+						lcd_visionox_rm692e5_visionox_fhd_timing1: timing1 {
+							clock-frequency = <376000000>;
+							hactive = <1080>;
+							vactive = <2400>;
+							hback-porch = <100>;
+							hfront-porch = <92>;
+							hsync-len = <8>;
+							vsync-len = <20>;
+							vback-porch = <12>;
+							vfront-porch = <830>;
+						};
+
+						lcd_visionox_rm692e5_visionox_fhd_timing2: timing2 {
+							clock-frequency = <376000000>;
+							hactive = <1080>;
+							vactive = <2400>;
+							hback-porch = <100>;
+							hfront-porch = <92>;
+							hsync-len = <8>;
+							vsync-len = <20>;
+							vback-porch = <12>;
+							vfront-porch = <10>;
+						};
+					};
+					oled-backlight {
+						default-brightness-level = <1632>;
+						sprd,max-level = <2047>;
+						brightness-levels = [
+							39 00 00 03 51 00 00
+							39 00 00 02 53 2C
+						];
+					};
+				};
+			};
+		};
+	};
+};

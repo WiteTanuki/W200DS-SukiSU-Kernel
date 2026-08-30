@@ -1,0 +1,49 @@
+&spi1 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+	/delete-node/ touchpanel@0;
+	zte-ts@0 {
+		compatible = "chipone-tddi", "himax,hxcommon", "focaltech,fts";
+		reg = <0>;
+		spi-max-frequency = <9600000>;
+		chipone,irq-gpio = <&eic_async 16 0x2008>; /* IRQF_ONESHOT | IRQF_TRIGGER_LOW */
+ 		chipone,rst-gpio = <&ap_gpio 14 0x0000>;
+ 		chipone,x-res = <1199>;
+ 		chipone,y-res = <1919>;
+		focaltech,reset-gpio = <&ap_gpio 14 0x0000>;
+		focaltech,irq-gpio =  <&eic_async 16 0x2008>; /* IRQF_ONESHOT | IRQF_TRIGGER_LOW */
+		focaltech,display-coords = <0 0 1199 1919>;
+		focaltech,max-touch-number = <10>;
+		himax,panel-coords = <0 1199 0 1919>;
+		himax,display-coords = <0 1199 0 1919>;
+		himax,irq-gpio = <&eic_async 16 0x2008>;
+		himax,rst-gpio = <&ap_gpio 14 0x0000>;
+		report_type = <1>;
+
+ 	};
+};
+
+/{
+	zte_tp:zte_tp {
+		compatible = "zte_tp";
+		zte,tp_algo;
+		zte,tp_long_press;
+		zte,tp_long_press_timer = <800>;
+		zte,tp_long_press_left_v = <6>;
+		zte,tp_long_press_right_v = <6>;
+		zte,tp_long_press_left_h = <6>; /*camera */
+		zte,tp_long_press_right_h = <6>; /*charger */
+		zte,tp_edge_click_suppression_pixel = <1>;
+		zte,ghost_check_config;
+		zte,ghost_check_single_time = <25>;
+		zte,ghost_check_multi_time = <20>;
+		zte,ghost_check_single_count = <5>;
+		zte,ghost_check_multi_count = <8>;
+		zte,ghost_check_start_time = <35>;
+		zte,ghost_check_ignore_edge_area = <41>;
+		zte,ghost_check_ignore_corner_x = <121>;
+		zte,ghost_check_ignore_corner_y = <121>;
+	};
+
+};

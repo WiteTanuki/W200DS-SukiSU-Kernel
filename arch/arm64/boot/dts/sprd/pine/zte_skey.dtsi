@@ -1,0 +1,25 @@
+&i2c2 {
+	status = "okay";
+	aw9620x_skey@13 {
+		compatible = "awinic,aw9620x_sar_0";
+		reg = <0x13>;
+		sar-num = < 0 >;
+		irq-gpio = <&ap_gpio 187 0>;
+		chip_name = "AW96205";
+		channel_use_flag = <0x01>;
+		status = "okay" ;
+	};
+};
+
+&i2c7 {
+	status = "okay";
+	aw9620x_skey@13 {
+		compatible = "awinic,aw9620x_sar_1";
+		reg = <0x13>;
+		sar-num = < 1 >;
+		irq-gpio = <&ap_gpio 176 0>;
+		chip_name = "AW96205";
+		channel_use_flag = <0x01>;
+		status = "okay" ;
+	};
+};

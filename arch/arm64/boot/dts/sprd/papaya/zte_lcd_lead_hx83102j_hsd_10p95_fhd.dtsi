@@ -1,0 +1,231 @@
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			lcds {
+				lcd_lead_hx83102j_hsd_mipi_hdplus_himax: lcd_lead_hx83102j_hsd_mipi_hdplus_himax {
+					zte,lcd-init-code-version = "20240604";
+
+					zte,lcd-backlight-register-bit-length = <0x0C>;
+					zte,lcm_backlight_curve_mode = "lcd_brightness_max_450_lux";
+					zte,lcd_bl_vsp_vsn_voltage = <0x14>;
+					zte,lcd-disable-ssc;
+					zte,panel-name = "lcd_lead_hx83102j_hsd_mipi_hdplus_himax";
+					zte,lcd-delay-open-bl-value = <100>;
+					zte,lcd-version-v000;
+					zte,lcd-disable-mipi-hop;
+
+					sprd,dsi-work-mode = <1>;
+					sprd,dsi-lane-number = <4>;
+					sprd,dsi-color-format = "dsc";
+					sprd,dpi-clk-div = <0>;
+					sprd,video-lp-cmd-enable = <0>;
+					sprd,hporch-lp-disable = <0>;
+					sprd,slice-width = <600>;
+					sprd,slice-height = <20>;
+					sprd,output-bpc = <8>;
+					sprd,dsc-enable = <1>;
+					sprd,dual-dsi-enable = <0>;
+
+					sprd,phy-bit-clock = <896000>;
+					sprd,phy-escape-clock = <20000>;/* kHz */
+
+					sprd,width-mm = <147420>;
+					sprd,height-mm = <235872>;
+
+					sprd,esd-check-enable = <1>;/* 0:close , 1:open */
+					sprd,esd-check-mode = <1>;/* 0:REG ,1:TE  */
+					sprd,esd-check-period = <2000>;
+					sprd,esd-check-register = <0x0A>;
+					sprd,esd-check-value = <0x9C>;
+
+					sprd,dphy-taget-val = <5>;
+
+					sprd,reset-on-sequence = <1 5>, <0 2>, <1 20>;
+					sprd,reset-off-sequence = <1 20>;
+
+					sprd,use-gen-write;
+					sprd,initial-command = [
+						39 00 00 06 B9 83 10 21 55 00
+						39 00 00 05 D9 00 01 02 D1
+						39 00 00 1B B1 2C AD AD 29 E9 43 DC 43 21 21 21 21 1A 8B 11 65 00 88 FA FF FF 8F FF 08 88 33
+						39 00 00 18 B2 00 47 B0 80 01 26 8E 3C 4E 03 03 02 00 88 F7 22 87 00 00 00 13 50 A0
+						39 00 00 0D B4 6A 38 6A 38 6A 38 6A 38 58 4C 01 3A
+						39 00 00 02 E9 CD
+						39 00 00 02 BA 84
+						39 00 00 02 E9 3F
+						39 00 00 03 BC 1D 04
+						39 00 00 02 BE 20
+						39 00 00 03 BF FC C4
+						39 00 00 0B C0 36 36 22 11 22 A0 61 08 F5 03
+						39 00 00 15 C7 0D 83 14 AF 24 8B 00 00 BE 00 60 80 03 B2 04 60 10 80 22 40
+						39 00 00 02 E9 C6
+						39 00 00 02 C8 97
+						39 00 00 02 E9 3F
+						39 00 00 06 C9 00 1E 13 88 01
+						39 00 00 07 CB 08 13 07 00 08 D3
+						39 00 00 04 CC 0E 03 4C
+						39 00 00 02 E9 C4
+						39 00 00 02 D0 03
+						39 00 00 02 E9 3F
+						39 00 00 08 D1 37 06 00 02 04 2C FF
+						39 00 00 23 D3 06 00 00 00 00 00 08 00 08 37 47 34 3B 27 27 03 03 32 10 25 00 25 32 10 08 00 08 32 17 A9 07 A9 00 00
+						39 00 00 2D D5 18 18 18 18 18 18 18 18 18 18 19 19 18 18 1A 1A 1B 1B 00 01 02 03 04 05 06 07 20 21 28 29 18 18 18 18 18 18 18 18 18 18 18 18 18 18
+						39 00 00 2D D6 18 18 18 18 18 18 18 18 18 18 18 18 19 19 1A 1A 1B 1B 07 06 05 04 03 02 01 00 29 28 21 20 18 18 18 18 18 18 18 18 18 18 18 18 18 18
+						39 00 00 25 D8 AA BA EA AA AA A0 AA BA EA AA AA A0 AA BA EA AA AA A0 AA BA EA AA AA A0 AA BA EA AA AA A0 AA BA EA AA AA A0
+						39 00 00 2D E1 11 00 00 89 30 80 07 80 02 58 00 14 02 58 02 58 02 00 02 2C 00 20 02 02 00 08 00 0C 05 0E 04 94 18 00 10 F0 03 0C 20 00 06 0B 0B 33
+						39 00 00 2F E0 00 05 13 1E 28 48 62 6A 71 6C 86 8A 8C 9A 95 9B A2 B3 B0 56 5D 66 73 00 05 13 1E 28 48 62 6A 71 6C 86 8A 8C 9A 95 9B A2 B3 B0 56 5D 66 73 
+						39 00 00 1C E7 0D 0E 0E 34 44 5D 02 92 5D 14 14 00 00 00 00 42 07 01 02 00 33 03 84 18 01 69 77
+						39 00 00 02 BD 01
+						39 00 00 05 B1 01 7F 11 FD
+						39 00 00 02 CB 80
+						39 00 00 03 D2 5A FA
+						39 00 00 0C D3 00 00 44 00 00 00 00 00 80 0C 01
+						39 00 00 02 E9 D1
+						39 00 00 0A E1 F6 2B 34 2B 74 3B 74 6B F4
+						39 00 00 02 E9 3F
+						39 00 00 29 E7 01 00 3B 01 9A 0D 2E 0E A0 00 00 20 40 50 40 00 48 03 0C 04 04 00 00 00 00 7E 7F 00 01 02 00 00 00 00 00 00 00 00 01 02
+						39 00 00 02 BD 02
+						39 00 00 09 CB 02 00 00 01 11 00 20 03
+						39 00 00 0D D8 FF FF BF FE AA A0 FF FF BF FE AA A0
+						39 00 00 1D E7 FE 01 FE 01 FE 01 00 00 00 23 00 23 81 02 40 00 20 58 05 04 03 02 01 00 00 00 01 00
+						39 00 00 02 BD 03
+						39 00 00 02 E9 C6
+						39 00 00 04 B4 03 FF F8
+						39 00 00 02 E9 3F
+						39 00 00 25 D8 00 2A AA AA AA A0 00 2A AA AA AA A0 00 3F FF FF FF F0 00 3F FF FF FF F0 00 2A AA AA AA A0 00 2A AA AA AA A0
+						39 00 00 02 E1 01
+						39 00 00 02 BD 00
+						39 00 00 02 E9 C4
+						39 00 00 02 BA 96
+						39 00 00 02 E9 3F
+						39 00 00 02 BD 01
+						39 00 00 02 E9 C5
+						39 00 00 02 BA 4F
+						39 00 00 02 E9 3F
+						39 00 00 02 BD 00
+						39 00 00 06 B9 00 00 00 00 00
+
+						39 00 00 03 51 00 00
+						39 00 00 02 35 00
+						39 00 00 02 53 24
+						39 00 00 02 55 00
+						05 64 00 01 11
+						05 14 00 01 29
+					];
+					zte,initial-command-fps90 = [
+						39 00 00 06 B9 83 10 21 55 00
+						39 00 00 05 D9 00 01 02 D1
+						39 00 00 1B B1 2C AD AD 29 E9 43 DC 43 21 21 21 21 1A 8B 11 65 00 88 FA FF FF 8F FF 08 88 33
+						39 00 00 18 B2 00 47 B0 80 01 26 8E 3C 4E 03 03 02 00 88 F5 22 87 00 00 00 13 50 A0
+						39 00 00 0D B4 6A 38 6A 38 6A 38 6A 38 58 4C 01 3A
+						39 00 00 02 E9 CD
+						39 00 00 02 BA 84
+						39 00 00 02 E9 3F
+						39 00 00 03 BC 1D 04
+						39 00 00 02 BE 20
+						39 00 00 03 BF FC C4
+						39 00 00 0B C0 36 36 22 11 22 A0 61 08 F5 03
+						39 00 00 15 C7 0D 83 14 AF 24 8B 00 00 BE 00 60 80 03 B2 04 60 10 80 22 40
+						39 00 00 02 E9 C6
+						39 00 00 02 C8 97
+						39 00 00 02 E9 3F
+						39 00 00 06 C9 00 1E 13 88 01
+						39 00 00 07 CB 08 13 07 00 08 D3
+						39 00 00 04 CC 0E 03 4C
+						39 00 00 02 E9 C4
+						39 00 00 02 D0 03
+						39 00 00 02 E9 3F
+						39 00 00 08 D1 37 06 00 02 04 2C FF
+						39 00 00 23 D3 06 00 00 00 00 00 08 00 08 37 47 34 3B 27 27 03 03 32 10 25 00 25 32 10 08 00 08 32 17 A9 07 A9 00 00
+						39 00 00 2D D5 18 18 18 18 18 18 18 18 18 18 19 19 18 18 1A 1A 1B 1B 00 01 02 03 04 05 06 07 20 21 28 29 18 18 18 18 18 18 18 18 18 18 18 18 18 18
+						39 00 00 2D D6 18 18 18 18 18 18 18 18 18 18 18 18 19 19 1A 1A 1B 1B 07 06 05 04 03 02 01 00 29 28 21 20 18 18 18 18 18 18 18 18 18 18 18 18 18 18
+						39 00 00 25 D8 AA BA EA AA AA A0 AA BA EA AA AA A0 AA BA EA AA AA A0 AA BA EA AA AA A0 AA BA EA AA AA A0 AA BA EA AA AA A0
+						39 00 00 2D E1 11 00 00 89 30 80 07 80 02 58 00 14 02 58 02 58 02 00 02 2C 00 20 02 02 00 08 00 0C 05 0E 04 94 18 00 10 F0 03 0C 20 00 06 0B 0B 33
+						39 00 00 2F E0 00 05 13 1E 28 48 62 6A 71 6C 86 8A 8C 9A 95 9B A2 B3 B0 56 5D 66 73 00 05 13 1E 28 48 62 6A 71 6C 86 8A 8C 9A 95 9B A2 B3 B0 56 5D 66 73
+						39 00 00 1C E7 0D 0E 0E 34 44 5D 02 92 5D 14 14 00 00 00 00 42 07 01 02 00 33 03 84 18 01 69 77
+						39 00 00 02 BD 01
+						39 00 00 05 B1 01 7F 11 FD
+						39 00 00 02 CB 80
+						39 00 00 03 D2 5A FA
+						39 00 00 0C D3 00 00 44 00 00 00 00 00 80 0C 01
+						39 00 00 02 E9 D1
+						39 00 00 0A E1 F6 2B 34 2B 74 3B 74 6B F4
+						39 00 00 02 E9 3F
+						39 00 00 29 E7 01 00 3B 01 9A 0D 2E 0E A0 00 00 20 40 50 40 00 48 03 0C 04 04 00 00 00 00 7E 7F 00 01 02 00 00 00 00 00 00 00 00 01 02
+						39 00 00 02 BD 02
+						39 00 00 09 CB 02 00 00 01 11 00 20 03
+						39 00 00 0D D8 FF FF BF FE AA A0 FF FF BF FE AA A0
+						39 00 00 1D E7 FE 01 FE 01 FE 01 00 00 00 23 00 23 81 02 40 00 20 58 05 04 03 02 01 00 00 00 01 00
+						39 00 00 02 BD 03
+						39 00 00 02 E9 C6
+						39 00 00 04 B4 03 FF F8
+						39 00 00 02 E9 3F
+						39 00 00 25 D8 00 2A AA AA AA A0 00 2A AA AA AA A0 00 3F FF FF FF F0 00 3F FF FF FF F0 00 2A AA AA AA A0 00 2A AA AA AA A0
+						39 00 00 02 E1 01
+						39 00 00 02 BD 00
+						39 00 00 02 E9 C4
+						39 00 00 02 BA 96
+						39 00 00 02 E9 3F
+						39 00 00 02 BD 01
+						39 00 00 02 E9 C5
+						39 00 00 02 BA 4F
+						39 00 00 02 E9 3F
+						39 00 00 02 BD 00
+						39 00 00 06 B9 00 00 00 00 00
+
+						39 00 00 03 51 00 00
+						39 00 00 02 35 00
+						39 00 00 02 53 24
+						39 00 00 02 55 00
+						05 64 00 01 11
+						05 14 00 01 29
+					];
+
+					sprd,sleep-in-command = [
+						15 01 00 02 AC 0A
+						39 14 00 03 28 00 00
+						39 78 00 03 10 00 00
+						];
+					sprd,sleep-out-command = [
+						05 78 00 01 11
+						05 14 00 01 29
+						];
+					display-timings {
+						native-mode = <&lcd_lead_hx83102j_hsd_fhd_timing0>;
+						lcd_lead_hx83102j_hsd_fhd_timing0: timing0 {
+							clock-frequency = <307200000>;
+							hactive = <1200>;
+							vactive = <1920>;
+							hback-porch = <100>;
+							hfront-porch = <136>;
+							vback-porch = <32>;
+							vfront-porch = <1572>;
+							hsync-len = <8>;
+							vsync-len = <8>;
+						};
+						lcd_lead_hx83102j_hsd_fhd_timing1: timing1 {
+							clock-frequency = <307200000>;
+							hactive = <1200>;
+							vactive = <1920>;
+							hback-porch = <100>;
+							hfront-porch = <136>;
+							vback-porch = <32>;
+							vfront-porch = <400>;
+							hsync-len = <8>;
+							vsync-len = <8>;
+						};
+					};
+					oled-backlight {
+						default-brightness-level = <1638>;
+						sprd,max-level = <4095>;
+						brightness-levels = [
+							39 00 00 03 51 00 00
+							39 00 00 02 53 2C
+						];
+					};
+				};
+			};
+		};
+	};
+};

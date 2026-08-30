@@ -1,0 +1,318 @@
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			lcds {
+				lcd_lectron_120hz_hx83112_boe_mipi_hdplus_himax: lcd_lectron_120hz_hx83112_boe_mipi_hdplus_himax {
+					zte,lcd-init-code-version = "20231025_only_vfp";
+
+					zte,lcm_backlight_curve_mode = "lcd_brightness_max_450_lux";
+					zte,lcd_bl_vsp_vsn_voltage = <0x0f>;
+					zte,lcd-disable-ssc;
+					zte,panel-name = "lcd_lectron_120hz_hx83112_boe_mipi_hdplus_himax";
+					zte,lcd-delay-open-bl-value = <100>;
+					zte,lcd-version-v000;
+					zte,lcd-disable-mipi-hop;
+					zte,lcd-reset-down-before-vsp;
+
+					sprd,dsi-work-mode = <1>;
+					sprd,dsi-lane-number = <4>;
+					sprd,dsi-color-format = "dsc";
+					sprd,phy-bit-clock = <1100000>;
+					sprd,phy-escape-clock = <20000>;/* kHz */
+
+					sprd,width-mm = <68430>;
+					sprd,height-mm = <152570>;
+					sprd,vrr-enabled;
+					sprd,vrr-max-layers = <3>;
+					sprd,slice-width = <540>;
+					sprd,slice-height = <8>;
+					sprd,output-bpc = <8>;
+					sprd,dsc-enable = <1>;
+					sprd,dual-dsi-enable = <0>;
+					zte,dsc-mode = <5>;
+
+					sprd,esd-check-enable = <1>;/* 0:close , 1:open */
+					sprd,esd-check-mode = <1>;/* 0:REG ,1:TE  */
+					sprd,esd-check-period = <2000>;
+					sprd,esd-check-register = <0x0A>;
+					sprd,esd-check-value = <0x9C>;
+
+					sprd,dphy-taget-val = <5>;
+
+					sprd,reset-on-sequence = <1 5>, <0 10>, <1 50>;
+					sprd,reset-off-sequence = <1 20>;
+
+					sprd,use-gen-write;
+					sprd,initial-command = [
+39 00 00 04 B9 83 11 2F
+39 00 00 0D B1 40 2B 2B 80 80 A8 A8 38 1E
+						06 06 1A
+39 00 00 02 BD 01
+39 00 00 03 B1 A4 01
+39 00 00 02 BD 02
+39 00 00 03 B1 2D 2D
+39 00 00 02 BD 00
+39 00 00 15 B2 00 02 08 90 68 00 1E 4C 10
+						08 00 47 11 00 00 00 00 00 80 64
+39 00 00 25 B4 00 00 00 00 00 00 00 52 00
+						52 00 52 00 52 00 00 00 03 00
+						17 00 02 07 04 00 00 00 00 83
+						00 FF 00 FF 00 01 01
+39 00 00 02 BD 02
+39 00 00 0C B4 92 44 12 00 22 22 11 12 88 12 42
+39 00 00 02 BD 00
+39 00 00 04 B6 76 76 03
+39 00 00 02 E9 C5
+39 00 00 02 BA 11
+39 00 00 02 E9 C9
+39 00 00 03 BA 09 3D
+39 00 00 02 E9 3F
+39 00 00 02 E9 CF
+39 00 00 02 BA 01
+39 00 00 02 E9 3F
+39 00 00 02 BD 01
+39 00 00 02 E9 C5
+39 00 00 02 BA 04
+39 00 00 02 E9 3F
+39 00 00 02 BD 00
+39 00 00 03 C7 F0 20
+39 00 00 05 CB 5C 21 05 2B
+39 00 00 02 CC 0A
+39 00 00 02 D1 07
+39 00 00 27 D3 81 14 00 00 00 06 00 00 03
+						03 16 16 08 08 08 08 22 18 32
+						10 1D 00 1D 32 10 11 00 11 32
+						10 08 00 08 00 00 20 09 6C
+39 00 00 02 BD 01
+39 00 00 0D D2 00 00 00 02 00 00 00 00 00 00 00 30
+39 00 00 0B D3 00 00 40 00 00 00 24 08 01 19
+39 00 00 02 BD 02
+39 00 00 18 D3 01 01 00 01 00 0A 0A 0A 0A
+						01 03 00 00 08 02 11 01 00 00
+						01 05 78 10
+39 00 00 02 BD 00
+39 00 00 31 D5 18 18 18 18 41 41 41 41 18
+						18 18 18 31 31 30 30 2F 2F 31
+						31 30 30 2F 2F 40 40 01 01 00
+						00 03 03 02 02 24 24 CE CE CE
+						CE 19 19 4E 4E 21 21 20 20
+39 00 00 31 D6 18 18 18 18 41 41 41 41 18
+						18 18 18 31 31 30 30 2F 2F 31
+						31 30 30 2F 2F 40 40 02 02 03
+						03 00 00 01 01 24 24 CE CE CE
+						CE 4E 4E 19 19 20 20 21 21
+39 00 00 25 D8 AA AA AA BF FF AA AA AA AA
+						BF FF AA AA AA AA AA AA AA AA
+						AA AA AA AA AA AA AA AA AA AA
+						AA AA AA AA AA AA AA
+39 00 00 02 BD 01
+39 00 00 19 D8 AA FF FF FF FF FF AA FF FF
+						FF FF FF AA AA AA AA AA AA AA
+						AA AA AA AA AA
+39 00 00 02 BD 02
+39 00 00 0D D8 AA FF FF FF FF FF AA FF FF FF FF FF
+39 00 00 02 BD 03
+39 00 00 19 D8 AA AF FF EA AA AA AA AF FF
+						EA AA AA AA FF FF FF FF FF AA
+						FF FF FF FF FF
+39 00 00 02 BD 00
+39 00 00 2F E0 00 15 31 38 41 7B 8C 93 96
+						95 95 92 8F 8D 8A 89 88 89 8B
+						A3 B5 4F 76 00 15 31 38 41 7B
+						8C 93 96 95 95 92 8F 8D 8A 89
+						88 89 8B A3 B5 4F 76
+39 00 00 2D E7 67 47 08 08 3A 64 3D 64 3A
+						64 0F 02 00 00 02 02 12 05 FF
+						FF 3D 64 3A 64 06 00 00 48 17
+						03 69 00 00 00 4C 4C 20 00 40
+						01 00 0C 0A 04
+39 00 00 02 BD 01
+39 00 00 0D E7 12 50 72 01 9C 05 92 10 00 00 00 02
+39 00 00 02 BD 02
+39 00 00 12 E7 02 02 02 00 52 01 03 01 03
+						01 03 22 20 28 40 01 00
+39 00 00 02 BD 00
+39 00 00 40 E1 11 00 00 89 30 80 09 68 04
+						38 00 08 02 1C 02 1C 02 00 02
+						0E 00 20 00 BB 00 07 00 0C 0D
+						B7 0C B7 18 00 10 F0 03 0C 20
+						00 06 0B 0B 33 0E 1C 2A 38 46
+						54 62 69 70 77 79 7B 7D 7E 01
+						02 01 00 09
+39 00 00 02 BD 01
+39 00 00 1A E1 40 09 BE 19 FC 19 FA 19 F8
+						1A 38 1A 78 1A B6 2A F6 2B 34
+						2B 74 3B 74 63 F4
+39 00 00 02 BD 03
+39 00 00 02 E1 01
+39 00 00 03 E7 04 04
+39 00 00 02 BD 00
+39 00 00 09 C0 35 35 00 00 2D 1A 66 81
+39 00 00 02 BD 01
+39 00 00 0D C0 00 00 00 00 00 00 00 00 00 00 00 00
+39 00 00 02 C7 44
+39 00 00 02 BF 0B
+39 00 00 02 BD 00
+39 00 00 05 BA 73 03 A8 9A
+39 00 00 04 CE 00 50 20
+39 00 00 02 35 00
+05 78 00 01 11
+05 14 00 01 29
+					];
+
+					zte,initial-command-fps120 = [
+39 00 00 04 B9 83 11 2F
+39 00 00 0D B1 40 2B 2B 80 80 A8 A8 38 1E
+						06 06 1A
+39 00 00 02 BD 01
+39 00 00 03 B1 A4 01
+39 00 00 02 BD 02
+39 00 00 03 B1 2D 2D
+39 00 00 02 BD 00
+39 00 00 15 B2 00 02 08 90 68 00 1E 4C 10
+						08 00 47 11 00 00 00 00 00 80 64
+39 00 00 25 B4 00 00 00 00 00 00 00 52 00
+						52 00 52 00 52 00 00 00 03 00
+						17 00 02 07 04 00 00 00 00 83
+						00 FF 00 FF 00 01 01
+39 00 00 02 BD 02
+39 00 00 0C B4 92 44 12 00 22 22 11 12 88 12 42
+39 00 00 02 BD 00
+39 00 00 04 B6 76 76 03
+39 00 00 02 E9 C5
+39 00 00 02 BA 11
+39 00 00 02 E9 C9
+39 00 00 03 BA 09 3D
+39 00 00 02 E9 3F
+39 00 00 02 E9 CF
+39 00 00 02 BA 01
+39 00 00 02 E9 3F
+39 00 00 02 BD 01
+39 00 00 02 E9 C5
+39 00 00 02 BA 04
+39 00 00 02 E9 3F
+39 00 00 02 BD 00
+39 00 00 03 C7 F0 20
+39 00 00 05 CB 5C 21 05 2B
+39 00 00 02 CC 0A
+39 00 00 02 D1 07
+39 00 00 27 D3 81 14 00 00 00 06 00 00 03
+						03 16 16 08 08 08 08 22 18 32
+						10 1D 00 1D 32 10 11 00 11 32
+						10 08 00 08 00 00 20 09 6C
+39 00 00 02 BD 01
+39 00 00 0D D2 00 00 00 02 00 00 00 00 00 00 00 30
+39 00 00 0B D3 00 00 40 00 00 00 24 08 01 19
+39 00 00 02 BD 02
+39 00 00 18 D3 01 01 00 01 00 0A 0A 0A 0A
+						01 03 00 00 08 02 11 01 00 00
+						01 05 78 10
+39 00 00 02 BD 00
+39 00 00 31 D5 18 18 18 18 41 41 41 41 18
+						18 18 18 31 31 30 30 2F 2F 31
+						31 30 30 2F 2F 40 40 01 01 00
+						00 03 03 02 02 24 24 CE CE CE
+						CE 19 19 4E 4E 21 21 20 20
+39 00 00 31 D6 18 18 18 18 41 41 41 41 18
+						18 18 18 31 31 30 30 2F 2F 31
+						31 30 30 2F 2F 40 40 02 02 03
+						03 00 00 01 01 24 24 CE CE CE
+						CE 4E 4E 19 19 20 20 21 21
+39 00 00 25 D8 AA AA AA BF FF AA AA AA AA
+						BF FF AA AA AA AA AA AA AA AA
+						AA AA AA AA AA AA AA AA AA AA
+						AA AA AA AA AA AA AA
+39 00 00 02 BD 01
+39 00 00 19 D8 AA FF FF FF FF FF AA FF FF
+						FF FF FF AA AA AA AA AA AA AA
+						AA AA AA AA AA
+39 00 00 02 BD 02
+39 00 00 0D D8 AA FF FF FF FF FF AA FF FF FF FF FF
+39 00 00 02 BD 03
+39 00 00 19 D8 AA AF FF EA AA AA AA AF FF
+						EA AA AA AA FF FF FF FF FF AA
+						FF FF FF FF FF
+39 00 00 02 BD 00
+39 00 00 2F E0 00 15 31 38 41 7B 8C 93 96
+						95 95 92 8F 8D 8A 89 88 89 8B
+						A3 B5 4F 76 00 15 31 38 41 7B
+						8C 93 96 95 95 92 8F 8D 8A 89
+						88 89 8B A3 B5 4F 76
+39 00 00 2D E7 67 47 08 08 3A 64 3D 64 3A
+						64 0F 02 00 00 02 02 12 05 FF
+						FF 3D 64 3A 64 06 00 00 48 17
+						03 69 00 00 00 4C 4C 20 00 40
+						01 00 0C 0A 04
+39 00 00 02 BD 01
+39 00 00 0D E7 12 50 72 01 9C 05 92 10 00 00 00 02
+39 00 00 02 BD 02
+39 00 00 12 E7 02 02 02 00 52 01 03 01 03
+						01 03 22 20 28 40 01 00
+39 00 00 02 BD 00
+39 00 00 40 E1 11 00 00 89 30 80 09 68 04
+						38 00 08 02 1C 02 1C 02 00 02
+						0E 00 20 00 BB 00 07 00 0C 0D
+						B7 0C B7 18 00 10 F0 03 0C 20
+						00 06 0B 0B 33 0E 1C 2A 38 46
+						54 62 69 70 77 79 7B 7D 7E 01
+						02 01 00 09
+39 00 00 02 BD 01
+39 00 00 1A E1 40 09 BE 19 FC 19 FA 19 F8
+						1A 38 1A 78 1A B6 2A F6 2B 34
+						2B 74 3B 74 63 F4
+39 00 00 02 BD 03
+39 00 00 02 E1 01
+39 00 00 03 E7 04 04
+39 00 00 02 BD 00
+39 00 00 09 C0 35 35 00 00 2D 1A 66 81
+39 00 00 02 BD 01
+39 00 00 0D C0 00 00 00 00 00 00 00 00 00 00 00 00
+39 00 00 02 C7 44
+39 00 00 02 BF 0B
+39 00 00 02 BD 00
+39 00 00 05 BA 73 03 A8 9A
+39 00 00 04 CE 00 50 20
+39 00 00 02 35 00
+05 78 00 01 11
+05 14 00 01 29
+					];
+
+					sprd,sleep-in-command = [
+						15 0A 00 01 28
+						15 C8 00 01 10
+						];
+					sprd,sleep-out-command = [
+						05 78 00 01 11
+						05 32 00 01 29
+						];
+					display-timings {
+						native-mode = <&lcd_lectron_120hz_hx83112_boe_fhd_timing0>;
+						lcd_lectron_120hz_hx83112_boe_fhd_timing0: timing0 {
+							clock-frequency = <384000000>;
+							hactive = <1080>;
+							vactive = <2408>; /*2408*/
+							hback-porch = <78>;
+							hfront-porch = <100>;
+							vback-porch = <17>;
+							vfront-porch = <2576>;
+							hsync-len = <10>;
+							vsync-len = <15>;
+						};
+						lcd_lectron_120hz_hx83112_boe_fhd_timing1: timing1 {
+							clock-frequency = <384000000>;
+							hactive = <1080>;
+							vactive = <2408>; 
+							hback-porch = <78>;
+							hfront-porch = <100>;
+							vback-porch = <17>;
+							vfront-porch = <78>;
+							hsync-len = <10>;
+							vsync-len = <15>;
+						};
+					};
+				};
+			};
+		};
+	};
+};

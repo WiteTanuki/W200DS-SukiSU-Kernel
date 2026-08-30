@@ -1,0 +1,227 @@
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			lcds {
+				lcd_huaying_hx83102j_huaying_mipi_hdplus_himax: lcd_huaying_hx83102j_huaying_mipi_hdplus_himax {
+					zte,lcd-init-code-version = "20240102";
+
+					zte,lcd-backlight-register-bit-length = <0x0C>;
+					zte,lcm_backlight_curve_mode = "lcd_brightness_max_450_lux";
+					zte,lcd_bl_vsp_vsn_voltage = <0x14>;
+					zte,lcd-disable-ssc;
+					zte,panel-name = "lcd_huaying_hx83102j_huaying_mipi_hdplus_himax";
+					zte,lcd-delay-open-bl-value = <100>;
+					zte,lcd-version-v000;
+					zte,lcd-disable-mipi-hop;
+
+					sprd,dsi-work-mode = <1>;
+					sprd,dsi-lane-number = <4>;
+					sprd,dsi-color-format = "dsc";
+					sprd,dpi-clk-div = <0>;
+					sprd,video-lp-cmd-enable = <0>;
+					sprd,hporch-lp-disable = <0>;
+					sprd,slice-width = <600>;
+					sprd,slice-height = <40>;
+					sprd,output-bpc = <8>;
+					sprd,dsc-enable = <1>;
+					sprd,dual-dsi-enable = <0>;
+
+					sprd,phy-bit-clock = <896000>;
+					sprd,phy-escape-clock = <20000>;/* kHz */
+
+					sprd,width-mm = <147420>;
+					sprd,height-mm = <235872>;
+
+					sprd,esd-check-enable = <0>;/* 0:close , 1:open */
+					sprd,esd-check-mode = <1>;/* 0:REG ,1:TE  */
+					sprd,esd-check-period = <2000>;
+					sprd,esd-check-register = <0x0A>;
+					sprd,esd-check-value = <0x9C>;
+
+					sprd,dphy-taget-val = <5>;
+
+					sprd,reset-on-sequence = <1 5>, <0 2>, <1 11>;
+					sprd,reset-off-sequence = <1 20>;
+
+					sprd,use-gen-write;
+					sprd,initial-command = [
+						39 00 00 06 B9 83 10 21 55 00
+						39 00 00 1B B1 2C AB AB 27 E7 32 CD 43 36 36 36 36 32 8B 11 65 00 88 FA FF FF 8F FF 08 9A 33
+						39 00 00 10 B2 00 47 B0 80 01 22 CA 3C 4B 00 00 00 00 88 61
+						39 00 00 12 B4 20 20 20 20 20 20 58 58 58 58 01 71 01 00 03 05 03
+						39 00 00 04 B6 63 63 03
+						15 00 00 02 E9 CD
+						15 00 00 02 BA 84
+						15 00 00 02 E9 3F
+						39 00 00 03 BC 1B 00
+						15 00 00 02 BE 20
+						39 00 00 09 BF FC C4 80 9C 36 00 0D 04
+						39 00 00 0B C0 34 34 22 11 22 A0 31 08 F5 03
+						39 00 00 04 C2 43 FF 00
+						39 00 00 15 C7 0D 83 14 AF 24 89 00 00 BE 00 60 80 03 B2 04 60 10 80 22 40
+						15 00 00 02 E9 C6
+						15 00 00 02 C8 97
+						15 00 00 02 E9 3F
+						39 00 00 06 C9 00 1E 10 40 01
+						39 00 00 07 CB 08 13 07 00 08 9F
+						39 00 00 04 CC 0E 03 4C
+						15 00 00 02 E9 C4
+						15 00 00 02 D0 03
+						15 00 00 02 E9 3F
+						39 00 00 08 D1 37 06 00 02 04 2C FF
+						15 00 00 02 D2 01
+						39 00 00 23 D3 06 00 00 00 00 08 08 08 08 47 07 74 37 20 20 03 03 32 10 1C 00 1C 32 17 AB 07 AB 32 10 08 00 08 00 00
+						39 00 00 2D D5 25 25 24 24 19 19 18 18 18 18 1E 1E 1F 1F 18 18 00 00 01 01 02 02 03 03 04 04 05 05 06 06 07 07 21 21 20 20 18 18 18 18 18 18 18 18
+						39 00 00 2D D6 20 20 21 21 18 18 19 19 18 18 1E 1E 1F 1F 40 40 07 07 06 06 05 05 04 04 03 03 02 02 01 01 00 00 24 24 25 25 40 40 18 18 18 18 18 18
+						39 00 00 25 D8 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+						39 00 00 2E E1 11 00 00 89 30 80 07 80 02 58 00 28 02 58 02 58 02 00 02 2C 00 20 04 12 00 08 00 0C 02 77 02 4A 18 00 10 F0 03 0C 20 00 06 0B 0B 33 0E
+						39 00 00 1C E7 26 0A 0A 39 33 5D 01 35 5D 14 14 00 00 00 00 9C 0C 01 02 00 33 02 04 18 01 69 77
+						15 00 00 02 BD 01
+						39 00 00 05 B1 01 7F 11 FD
+						15 00 00 02 CB 80
+						15 00 00 02 E9 C5
+						39 00 00 08 D3 20 00 00 80 80 0C 81
+						15 00 00 02 E9 3F
+						39 00 00 1A E1 40 09 BE 19 FC 19 FA 19 F8 1A 38 1A 78 1A B6 2A F6 2B 34 2B 74 3B 74 6B F4
+						39 00 00 0C E7 01 00 B4 01 C8 09 B4 0A A0 00 04
+						15 00 00 02 BD 02
+						39 00 00 06 CB 03 07 00 09 67
+						15 00 00 02 BF F2
+						39 00 00 0D D8 FF FE FF FF FA B0 FF FE FF FF FA B0
+						39 00 00 19 E7 FD 03 FD 03 FD 03 02 02 02 06 00 06 81 02 40 00 20 73 01 00 03 02 01 00
+						15 00 00 02 BD 03
+						39 00 00 19 D8 AA AA AA AA AA AA A0 AA AA AA AA AA A0 FF FE FF FF FA B0 FF FE FF FF FA
+						15 00 00 02 E1 01
+						15 00 00 02 E9 C6
+						39 00 00 04 B4 03 FF F8
+						15 00 00 02 E9 3F
+						15 00 00 02 BD 00
+						15 00 00 02 E9 C4
+						15 00 00 02 BA 96
+						15 00 00 02 E9 3F
+						15 00 00 02 BD 01
+						15 00 00 02 E9 C5
+						15 00 00 02 BA 4F
+						15 00 00 02 E9 3F
+						15 00 00 02 BD 00
+						39 00 00 03 51 00 00
+						15 00 00 02 53 24
+						15 00 00 02 55 00
+						05 64 00 01 11
+						05 14 00 01 29
+					];
+					zte,initial-command-fps90 = [
+						39 00 00 06 B9 83 10 21 55 00
+						39 00 00 1B B1 2C AB AB 27 E7 32 CD 43 36 36 36 36 32 8B 11 65 00 88 FA FF FF 8F FF 08 9A 33
+						39 00 00 10 B2 00 47 B0 80 01 22 CA 3C 4B 00 00 00 00 88 61
+						39 00 00 12 B4 20 20 20 20 20 20 58 58 58 58 01 71 01 00 03 05 03
+						39 00 00 04 B6 63 63 03
+						15 00 00 02 E9 CD
+						15 00 00 02 BA 84
+						15 00 00 02 E9 3F
+						39 00 00 03 BC 1B 00
+						15 00 00 02 BE 20
+						39 00 00 09 BF FC C4 80 9C 36 00 0D 04
+						39 00 00 0B C0 34 34 22 11 22 A0 31 08 F5 03
+						39 00 00 04 C2 43 FF 00
+						39 00 00 15 C7 0D 83 14 AF 24 89 00 00 BE 00 60 80 03 B2 04 60 10 80 22 40
+						15 00 00 02 E9 C6
+						15 00 00 02 C8 97
+						15 00 00 02 E9 3F
+						39 00 00 06 C9 00 1E 10 40 01
+						39 00 00 07 CB 08 13 07 00 08 9F
+						39 00 00 04 CC 0E 03 4C
+						15 00 00 02 E9 C4
+						15 00 00 02 D0 03
+						15 00 00 02 E9 3F
+						39 00 00 08 D1 37 06 00 02 04 2C FF
+						15 00 00 02 D2 01
+						39 00 00 23 D3 06 00 00 00 00 08 08 08 08 47 07 74 37 20 20 03 03 32 10 1C 00 1C 32 17 AB 07 AB 32 10 08 00 08 00 00
+						39 00 00 2D D5 25 25 24 24 19 19 18 18 18 18 1E 1E 1F 1F 18 18 00 00 01 01 02 02 03 03 04 04 05 05 06 06 07 07 21 21 20 20 18 18 18 18 18 18 18 18
+						39 00 00 2D D6 20 20 21 21 18 18 19 19 18 18 1E 1E 1F 1F 40 40 07 07 06 06 05 05 04 04 03 03 02 02 01 01 00 00 24 24 25 25 40 40 18 18 18 18 18 18
+						39 00 00 25 D8 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+						39 00 00 2E E1 11 00 00 89 30 80 07 80 02 58 00 28 02 58 02 58 02 00 02 2C 00 20 04 12 00 08 00 0C 02 77 02 4A 18 00 10 F0 03 0C 20 00 06 0B 0B 33 0E
+						39 00 00 1C E7 26 0A 0A 39 33 5D 01 35 5D 14 14 00 00 00 00 9C 0C 01 02 00 33 02 04 18 01 69 77
+						15 00 00 02 BD 01
+						39 00 00 05 B1 01 7F 11 FD
+						15 00 00 02 CB 80
+						15 00 00 02 E9 C5
+						39 00 00 08 D3 20 00 00 80 80 0C 81
+						15 00 00 02 E9 3F
+						39 00 00 1A E1 40 09 BE 19 FC 19 FA 19 F8 1A 38 1A 78 1A B6 2A F6 2B 34 2B 74 3B 74 6B F4
+						39 00 00 0C E7 01 00 B4 01 C8 09 B4 0A A0 00 04
+						15 00 00 02 BD 02
+						39 00 00 06 CB 03 07 00 09 67
+						15 00 00 02 BF F2
+						39 00 00 0D D8 FF FE FF FF FA B0 FF FE FF FF FA B0
+						39 00 00 19 E7 FD 03 FD 03 FD 03 02 02 02 06 00 06 81 02 40 00 20 73 01 00 03 02 01 00
+						15 00 00 02 BD 03
+						39 00 00 19 D8 AA AA AA AA AA AA A0 AA AA AA AA AA A0 FF FE FF FF FA B0 FF FE FF FF FA
+						15 00 00 02 E1 01
+						15 00 00 02 E9 C6
+						39 00 00 04 B4 03 FF F8
+						15 00 00 02 E9 3F
+						15 00 00 02 BD 00
+						15 00 00 02 E9 C4
+						15 00 00 02 BA 96
+						15 00 00 02 E9 3F
+						15 00 00 02 BD 01
+						15 00 00 02 E9 C5
+						15 00 00 02 BA 4F
+						15 00 00 02 E9 3F
+						15 00 00 02 BD 00
+						39 00 00 03 51 00 00
+						15 00 00 02 53 24
+						15 00 00 02 55 00
+						05 64 00 01 11
+						05 14 00 01 29
+					];
+
+					sprd,sleep-in-command = [
+						15 01 00 02 AC 0A
+						39 14 00 03 28 00 00
+						39 78 00 03 10 00 00
+						];
+					sprd,sleep-out-command = [
+						05 78 00 01 11
+						05 14 00 01 29
+						];
+					display-timings {
+						native-mode = <&lcd_huaying_hx83102j_huaying_fhd_timing0>;
+						lcd_huaying_hx83102j_huaying_fhd_timing0: timing0 {
+							clock-frequency = <307200000>;
+							hactive = <1200>;
+							vactive = <1920>;
+							hback-porch = <160>;
+							hfront-porch = <156>;
+							vback-porch = <28>;
+							vfront-porch = <1408>;
+							hsync-len = <4>;
+							vsync-len = <8>;
+						};
+						lcd_huaying_hx83102j_huaying_fhd_timing1: timing1 {
+							clock-frequency = <307200000>;
+							hactive = <1200>;
+							vactive = <1920>;
+							hback-porch = <160>;
+							hfront-porch = <156>;
+							vback-porch = <28>;
+							vfront-porch = <288>;
+							hsync-len = <4>;
+							vsync-len = <8>;
+						};
+					};
+					oled-backlight {
+						default-brightness-level = <1638>;
+						sprd,max-level = <4095>;
+						brightness-levels = [
+							39 00 00 03 51 00 00
+							39 00 00 02 53 2C
+						];
+					};
+				};
+			};
+		};
+	};
+};

@@ -1,0 +1,100 @@
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			lcds {
+				lcd_easyquick_aixiesheng_boe_mipi_hd: lcd_easyquick_aixiesheng_boe_mipi_hd {
+				zte,lcd-init-code-version = "20240201_gamma_v0";
+				zte,lcd-backlight-register-bit-length = <0x0A>;
+				zte,lcm_backlight_curve_mode = "lcd_brightness_max_350_lux";
+				zte,lcd_bl_vsp_vsn_voltage = <0x14>;
+				zte,lcd-disable-ssc;
+				zte,lcd-delay-open-bl-value = <60>;
+				zte,lcd-close-dynamic-dimming;
+				zte,panel-name = "lcd_easyquick_aixiesheng_boe_mipi_hd";
+				sprd,dsi-work-mode = <1>; /* video burst mode*/
+				sprd,dsi-lane-number = <2>;
+				sprd,dsi-color-format = "rgb888";
+				sprd,phy-bit-clock = <552000>;	/* kbps */
+				sprd,phy-escape-clock = <20000>;/* kHz */
+				sprd,width-mm = <61780>;
+				sprd,height-mm = <109910>;
+				sprd,esd-check-enable = <1>;/* 0:close , 1:open */
+				sprd,esd-check-mode = <4>;/* 0:REG ,1:TE  */
+				sprd,esd-check-period = <2000>;
+				sprd,esd-check-register = <0x0A>;
+				sprd,esd-check-value = <0x9C>;
+				sprd,dphy-taget-val = <5>;
+				sprd,reset-on-sequence = <1 5>, <0 5>, <1 30>;
+				sprd,reset-off-sequence = <1 120>;
+				sprd,initial-command = [
+39 00 00 09 BB 00 00 00 00 00 00 5A A5
+39 00 00 03 F8 21 E1
+39 00 00 1E A0 00 10 00 02 00 00 04 FF 00 05 3F 3F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+39 00 00 17 A1 8F E5 11 AA 55 60 02 00 00 00 01 26 26 32 92 93 13 92 90 90 90 84
+39 00 00 27 A2 20 02 02 3C 50 78 B0 00 00 00 7F 7F 7F 80 20 88 88 00 FF 20 90 00 20 90 00 E0 01 7F FF 00 00 00 00 00 E7 FF FF 00
+39 00 00 11 A4 85 85 92 82 AF AD AD 80 10 30 40 40 20 50 60 53
+39 00 00 09 B8 03 08 08 20 00 02 50 0E
+39 00 00 1D C1 70 04 02 02 71 05 18 00 02 10 01 01 43 ff ff 7f 4f 52 00 4f 52 00 54 3b 0b 04 06 ff
+39 00 00 03 C3 00 C0
+39 00 00 1F C4 02 02 F0 83 00 63 00 0C 03 0C 01 01 03 10 3E 06 9D 00 00 80 FE 10 10 00 0A 0A 48 48 84 78
+39 00 00 0C C5 19 19 08 90 30 90 20 30 30 10 88
+39 00 00 0E C6 05 0A 05 0A C2 E0 2E 0B 12 22 12 22 03
+39 00 00 2A C7 50 10 28 00 A2 00 4F 00 00 FF A8 99 9F 60 07 22 0C 0D 0E 0F 01 01 01 01 30 10 0A FF FF FF FF 03 00 00 00 00 00 00 00 00 00
+39 00 00 20 CD 28 FF 00 B6 B2 B2 B2 B2 00 01 02 02 00 02 00 00 01 02 01 02 01 02 01 01 02 01 01 02 01 02 FF
+39 01 00 20 CF 3C 1E 88 50 FF 18 16 18 16 0A 8C 00 62 0E 2A 88 0C 0F 22 88 AA 55 0A 0A 91 A0 30 24 BB 01 00
+39 01 00 2D D0 00 00 01 24 08 05 10 01 50 11 C2 C2 22 22 00 03 10 1A 40 10 1E 51 15 80 F0 00 00 03 0D 26 A2 28 28 28 28 28 28 00 10 88 0D 02 13 12
+39 00 00 27 D5 10 15 90 00 79 03 20 20 70 07 07 00 08 00 00 4E 03 03 03 03 8A 01 03 00 56 13 59 10 15 00 10 15 04 00 12 27 1F 30
+39 00 00 2C D6 10 32 54 76 98 BA DC FE 02 00 01 83 07 07 00 07 07 00 03 03 03 03 03 30 00 88 08 28 01 00 00 00 00 00 00 00 00 12 00 00 00 00 20
+39 00 00 12 D7 1f 1f 1f 11 13 15 17 09 0B 0D 0F 1E 1E 1F 01 18 1F
+39 00 00 12 D8 1f 1f 1f 10 12 14 16 08 0A 0C 0E 1E 1E 1F 00 18 1F
+39 00 00 12 D9 1f 1f 1f 0A 08 16 14 12 10 0E 0C 1F 1E 1F 00 18 1E
+39 00 00 12 DD 1f 1f 1f 0B 09 17 15 13 11 0F 0D 1F 1E 1F 01 18 1E
+39 00 00 08 DF 00 00 6D CB BB 2B 30
+39 00 00 21 E0 1F 20 25 26 27 29 2A 27 50 59 6A 66 6F 81 87 8D A0 AA A1 B9 C2 5F 61 64 67 69 6E 73 72 33 35 01
+39 00 00 22 E1 1F 20 25 26 27 29 2A 27 50 59 6A 66 6F 81 87 8D A0 AA A1 B9 C2 5F 61 64 67 69 6E 73 72 33 35 D6 33
+39 00 00 0F E7 56 03 e0 01 56 03 E0 01 00 10 00 08 00 04
+39 00 00 17 E8 E9 00 00 00 00 00 01 01 22 30 04 00 CF 20 00 FF 40 00 00 00 00 00
+39 00 00 09 BB 00 00 00 00 00 00 00 00
+05 78 00 01 11
+05 14 00 01 29
+					];
+					sprd,sleep-in-command = [
+							05 14 00 01 28
+							05 78 00 01 10
+					];
+					sprd,sleep-in-command2 = [
+							05 14 00 01 ff
+					];
+					sprd,sleep-out-command = [
+						13 78 00 01 11
+						13 64 00 01 29
+					];
+
+					display-timings {
+						timing0{
+						clock-frequency = <38400000>;
+						hactive = <480>;
+						vactive = <854>;
+						hback-porch = <60>;
+						hfront-porch = <80>;
+						vback-porch = <40>;
+						vfront-porch = <130>;
+						hsync-len = <4>;
+						vsync-len = <4>;
+						};
+					};
+					/*
+					oled-backlight {
+						default-brightness-level = <102>;
+						sprd,max-level = <255>;
+						brightness-levels = [
+							23 00 00 02 51 00
+							23 00 00 02 53 0C
+						];
+					};*/
+				};
+			};
+		};
+	};
+};

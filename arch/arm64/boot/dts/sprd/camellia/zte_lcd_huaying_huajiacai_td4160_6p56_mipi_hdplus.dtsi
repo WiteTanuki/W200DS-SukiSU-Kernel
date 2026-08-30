@@ -1,0 +1,157 @@
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			lcds {
+				lcd_td4160_huaying_huajiacai_6p56_omnivision: lcd_td4160_huaying_huajiacai_6p56_omnivision {
+					zte,lcd-init-code-version = "20240117_3fps_120hz_v0";
+					sprd,vrr-enabled;
+					sprd,vrr-max-layers = <2>;
+					zte,lcd-backlight-register-bit-length = <0x0C>;
+
+					zte,lcd_bl_vsp_vsn_voltage = <0x14>;
+					zte,lcd-disable-ssc;
+					zte,lcd-ctrl-tp-resetpin;
+					zte,panel-name = "lcd_td4160_huaying_huajiacai_6p56_omnivision";
+					zte,lcd-delay-open-bl-value = <34>;
+					zte,lcd-backlight-min-value = <0x04>;
+
+					sprd,dsi-work-mode = <1>;
+					sprd,dsi-lane-number = <4>;
+					sprd,dsi-color-format = "rgb888";
+
+					sprd,dpi-clk-div = <6>;
+					sprd,video-lp-cmd-enable = <1>;
+					sprd,hporch-lp-disable = <1>;
+
+					sprd,phy-bit-clock = <1116288>;
+					sprd,phy-escape-clock = <20000>;/* kHz */
+
+					sprd,width-mm = <67930>;
+					sprd,height-mm = <152090>;
+
+					sprd,esd-check-enable = <1>;/* 0:close , 1:open */
+					sprd,esd-check-mode = <1>;/* 0:REG ,1:TE  */
+					sprd,esd-check-period = <2000>;
+					sprd,esd-check-register = <0x0A>;
+					sprd,esd-check-value = <0x9C>;
+
+					sprd,dphy-taget-val = <5>;
+
+					sprd,reset-on-sequence = <1 5>, <0 15>, <1 20>;
+					sprd,reset-off-sequence = <0 20>;
+
+		sprd,initial-command = [
+39 00 00 02 b0 00
+39 00 00 07 b6 30 6b 00 86 c3 03
+39 00 00 05 b7 31 00 00 00
+39 00 00 07 b8 00 78 64 10 64 b4
+39 00 00 07 b9 00 78 64 10 64 b4
+39 00 00 07 ba 00 78 64 10 64 b4
+39 00 00 04 bb 00 b4 a0
+39 00 00 04 bc 00 b4 a0
+39 00 00 04 bd 00 b4 a0
+39 00 00 0e be 07 00 00 00 00 00 00 00 00 00 00 00 00
+39 00 00 19 c0 00 45 22 06 4c 00 1e 06 94 00 70 00 00 00 00 00 00 00 00 00 00 00 00 00
+39 00 00 28 c1 30 71 50 fa 01 00 00 10 00 00 00 00 40 0f 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+39 00 00 f5 c2 03 d0 3d 12 0a 10 0b 14 00 03 d0 3d 12 0a 10 07 13 00 03 d0 3d 12 05 06 73 12 00 03 d0 3d 12 05 06 75 11 00 00 00 00 00 00 00 03 d0 3d 10 10 05 0d 41 00 46 71 00 00 00 08 00 00 00 00 11 00 c6 69 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 00 00 00 00 00 00 00 00 00 00 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+39 00 00 6a c3 03 d0 3d 01 67 a6 83 00 00 00 22 00 03 d0 3d 01 67 b6 84 00 00 00 21 00 00 00 42 81 00 f6 69 00 00 00 20 00 00 00 00 00 00 00 00 00 00 00 20 00 00 00 00 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+39 00 00 55 c4 00 0b 0f 00 5d 00 00 00 00 00 00 00 00 21 1f 1d 1b 19 17 15 13 07 03 04 08 14 16 18 1a 1c 1e 20 22 00 00 00 00 00 00 00 00 5e 00 10 0c 00 00 00 00 00 00 00 f0 0f ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 55 55 55 55 55 55 55 55 55 55 55
+39 00 00 06 c5 08 00 00 00 00
+39 00 00 4d c6 00 00 00 00 01 22 04 22 01 00 46 00 00 00 01 00 46 00 01 05 01 0b 01 35 ff 8f 06 c5 02 c0 0f 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 20 20 00 00 00 c0 11 00 00 00 10 10 00 00 00 01 00 50 00 33 03 00 00
+39 00 00 1f cb 02 d0 01 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 70 00 00 00 00 00 ff
+39 00 00 19 ce 5d 40 43 49 55 62 71 82 94 a8 b9 cb db e9 f5 fc ff 09 46 04 04 00 04 8c
+39 00 00 02 cf 00
+39 00 00 15 d0 c1 50 81 66 09 90 00 d5 92 9f 11 32 06 7e 09 08 dc 1b f0 06
+39 00 00 26 d1 bc bc 1b 33 33 17 07 bb 77 77 77 77 00 3b 77 07 3b 30 06 72 33 13 00 d7 0c 77 02 00 18 70 18 77 11 11 11 20 20
+39 00 00 04 d2 00 00 00
+39 00 00 9a d3 00 00 00 00 00 00 00 00 00 ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff ff f7 ff
+39 00 00 18 d4 00 00 00 00 00 00 00 00 00 20 00 00 00 00 20 00 00 00 00 00 00 00 00
+39 00 00 2f d7 01 00 12 12 00 45 00 18 00 45 00 18 03 83 80 85 85 85 87 84 45 86 87 80 88 86 89 83 83 87 84 88 8a 0c 0b 0a 0a 0a 07 07 06 06 00 08 0a 0a
+39 00 00 17 d8 40 99 26 ed 16 6c 16 6c 16 6c 00 14 00 14 00 14 01 0c 00 00 01 00
+39 00 00 29 d9 00 02 7f 22 00 00 00 00 00 00 00 00 00 00 00 c0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0a 00 00 00 00 00 00 00
+39 00 00 05 dd 30 06 23 65
+39 00 00 0f de 00 00 00 0f ff 00 00 00 00 10 00 00 00 00
+39 00 00 09 e6 00 00 00 00 00 00 00 00
+39 00 00 24 ea 02 07 07 04 80 10 01 00 00 00 00 03 23 00 07 00 ed 00 ed 00 ed 01 28 01 28 00 47 00 47 00 47 01 0f 01 00
+39 00 00 09 eb 09 90 61 00 01 00 00 00
+39 00 00 18 ec 02 d0 01 70 73 10 01 00 00 00 00 02 2a 00 00 00 00 00 00 00 00 00 00
+39 00 00 22 ed 01 02 00 00 00 00 00 00 68 d7 25 00 00 00 00 00 00 00 00 00 00 00 02 b0 00 00 00 00 00 00 40 10 00
+39 00 00 7a ee 05 00 05 00 00 03 00 00 03 00 00 03 00 00 03 00 00 03 00 00 00 00 00 00 03 00 00 00 00 00 00 03 00 00 00 00 00 00 03 00 00 00 00 00 00 03 00 00 03 00 00 00 00 00 00 03 00 00 00 00 00 00 03 00 00 00 00 00 00 03 00 00 00 00 00 00 03 00 00 03 00 00 03 00 00 03 00 00 03 00 00 03 00 00 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02
+39 00 00 02 b0 03
+39 00 00 4d c7 00 00 00 41 00 ba 01 0c 01 74 01 a2 01 9a 01 9a 01 8c 01 88 01 80 01 79 01 7b 01 6d 01 89 02 21 02 5b 02 9b 02 b2 00 00 00 41 00 ba 01 0c 01 74 01 a2 01 9a 01 9a 01 8c 01 88 01 80 01 79 01 7b 01 6d 01 89 02 21 02 5b 02 9b 02 b2
+39 00 00 02 b0 00
+39 00 00 02 d6 00
+39 00 00 02 b0 03
+39 00 00 03 51 00 00
+39 00 00 02 53 2c
+39 00 00 02 55 00
+39 00 00 02 35 00
+39 00 00 02 b0 03
+39 64 00 02 11 00
+39 14 00 02 29 00
+		];
+
+					sprd,sleep-in-command = [
+						39 00 00 02 53 00
+						39 00 00 03 51 00 00
+						05 14 00 01 28
+						05 78 00 01 10
+						];
+					sprd,sleep-out-command = [
+						05 78 00 01 11
+						05 64 00 01 29
+						];
+
+					display-timings {
+						native-mode = <&td4160_huaying_huajiacai_timing0>;
+						td4160_huaying_huajiacai_timing0: timing0 {/*60hz*/
+							clock-frequency = <186048000>;
+							hactive = <720>;
+ 							vactive = <1612>;
+							hback-porch = <36>;
+							hfront-porch = <84>;
+ 							vback-porch = <30>;
+							vfront-porch = <2026>;
+							hsync-len = <4>;
+ 							vsync-len = <4>;
+ 
+ 						};
+						td4160_huaying_huajiacai_timing2: timing2 {/*90hz*/
+							clock-frequency = <186048000>;
+							hactive = <720>;
+							vactive = <1612>;
+							hback-porch = <36>;
+							hfront-porch = <84>;
+							vback-porch = <30>;
+							vfront-porch = <802>;
+							hsync-len = <4>;
+							vsync-len = <4>;
+						};
+
+						 td4160_huaying_huajiacai_timing1: timing1 {/*120hz*/
+							clock-frequency = <186048000>;
+ 							hactive = <720>;
+ 							vactive = <1612>;
+							hback-porch = <36>;
+							hfront-porch = <84>;
+							vback-porch = <30>;
+							vfront-porch = <190>;
+							hsync-len = <4>;
+ 							vsync-len = <4>;
+ 
+						};
+					};
+					oled-backlight {
+						default-brightness-level = <102>;
+						sprd,max-level = <4095>;
+						brightness-levels = [
+							39 00 00 03 51 00 00
+							39 00 00 02 53 2C
+						];
+					};
+				};
+			};
+		};
+	};
+};

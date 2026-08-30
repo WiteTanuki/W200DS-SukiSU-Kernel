@@ -1,0 +1,13 @@
+W200DS SukiSU Kernel is an unofficial aggregation and device-specific port.
+
+The Linux kernel and the SukiSU/KernelSU-derived kernel code remain subject to
+the GPL-2.0-only and per-file SPDX notices shipped in this source tree.
+KernelPatch runtime source is kept in tools/kernelpatch-runtime with its own
+GPL-2.0 license and notices. SUSFS-derived code keeps its upstream copyright
+notices and the GPL-3.0-or-later text copied to
+LICENSES/third-party/SUSFS-GPL-3.0-or-later.txt.
+
+No OEM firmware, private key, Manager APK or third-party root module is part of
+the source repository. See Documentation/w200ds/THIRD-PARTY-NOTICES.md for
+component revisions and the release-specific redistribution note.
+

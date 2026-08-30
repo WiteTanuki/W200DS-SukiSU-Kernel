@@ -1,0 +1,52 @@
+&i2c2 {
+	fsa4480: fsa4480@42 {
+		status = "okay";
+		compatible = "sprd,fsa4480-i2c";
+		reg = <0x42>;
+	};
+};
+
+&i2c7 {
+	status = "okay";
+	clock-frequency = <400000>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+	aw87xxx_0@5b {
+		compatible = "awinic,aw87xxx_pa";
+		reg = <0x5b>;
+		reset-gpio = <&ap_gpio 120 0>;
+		dev_index = <0>;
+		status = "okay";
+	};
+	aw87xxx_1@58 {
+		compatible = "awinic,aw87xxx_pa";
+		reg = <0x58>;
+		dev_index = <1>;
+		status = "okay";
+	};
+};
+
+&sprd_headset {
+	status = "okay";
+	extcon = <&pmic_typec>;
+	typec-i2c = <1>;
+	sprd,3pole-adc-threshold = <112>;
+	fsa4480-i2c-handle = <&fsa4480>;
+};
+
+&sound_vbc_v4_sprd_codec {
+
+	status = "okay";
+	extral-iic-pa = <2>;
+
+	sprd-audio-card,routing =
+		"HPMIC Pin", "HP Mic Jack",
+		"MIC Pin", "Mic Jack",
+		"MIC2 Pin", "Aux Mic Jack",
+		"MIC3 Pin", "Aux Mic2 Jack",
+		"HeadPhone Jack", "HP Pin",
+		"Ext Spk", "SPK Pin",
+		"Ext Ear", "EAR Pin";
+};
+
+

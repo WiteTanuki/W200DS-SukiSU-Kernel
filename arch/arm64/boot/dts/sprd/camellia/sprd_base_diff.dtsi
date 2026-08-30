@@ -1,0 +1,25 @@
+/*
+ * this file is ued to change sprd dtsi which can't be changed by overlay
+ * such as /delete-node/ /delete-property/ and alises
+ */
+#include "touchscreen.dtsi"
+#include "zte_camera_camellia.dtsi"
+#include "zte_charger_camellia.dtsi"
+#include "zte_audio.dtsi"
+#include "zte_fingerprint_camellia.dtsi"
+#include "zte_nfc_pn557.dtsi"
+&reserved_memory {
+	/delete-node/ dptx_hdcp@fff10000;
+	/delete-node/ ise_med@bc000000;
+};
+
+/{
+	zcard_holder_det{
+		zcard-holder-det-gpios=<&eic_sync 36 GPIO_ACTIVE_HIGH>;
+	};
+};
+
+&sdio0 {
+	status = "disabled";
+	non-removable;
+};

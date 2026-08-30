@@ -1,0 +1,71 @@
+&pin_controller {
+	zte_fp_spi_csn: fp_spi_csn {
+		pins = "QOGIRN6PRO_SPI0_CSN";
+		function = "func1";
+	};
+
+	zte_fp_spi_do: fp_spi_do {
+		pins = "QOGIRN6PRO_SPI0_DO";
+		function = "func1";
+	};
+
+	zte_fp_spi_di: fp_spi_di {
+		pins = "QOGIRN6PRO_SPI0_DI";
+		function = "func1";
+	};
+
+	zte_fp_spi_clk: fp_spi_clk {
+		pins = "QOGIRN6PRO_SPI0_CLK";
+		function = "func1";
+	};
+
+	zte_fp_gpio_105: fp_gpio_105 {
+		pins = "QOGIRN6PRO_SPI0_CSN";
+		function = "func4";
+	};
+
+	zte_fp_gpio_106: fp_gpio_106 {
+		pins = "QOGIRN6PRO_SPI0_DO";
+		function = "func4";
+	};
+
+	zte_fp_gpio_107: fp_gpio_107 {
+		pins = "QOGIRN6PRO_SPI0_DI";
+		function = "func4";
+	};
+
+	zte_fp_gpio_108: fp_gpio_108 {
+		pins = "QOGIRN6PRO_SPI0_CLK";
+		function = "func4";
+	};
+
+};
+
+/ {
+	zte_fp {
+		compatible = "zte,fingerprint";
+		pinctrl-names = "zte_fp_spi", "zte_fp_gpio";
+		pinctrl-0 = <&zte_fp_spi_csn &zte_fp_spi_do &zte_fp_spi_di &zte_fp_spi_clk>;
+		pinctrl-1 = <&zte_fp_gpio_105 &zte_fp_gpio_106 &zte_fp_gpio_107 &zte_fp_gpio_108>;
+	};
+
+	goodix_fp {
+		compatible = "goodix,fingerprint";
+		fp-gpio-reset = <&ap_gpio 110 0x00>;
+		#fp-gpio-irq = <&ap_gpio 109 0x00>;
+		fp-gpio-irq = <&eic_async 29 0x00>;
+		vdd-supply = <&vddcammot1>;
+		power-type = <1>;
+		power-voltage = <3000000>;
+	};
+
+	chipone_fp {
+		compatible = "chipone,fingerprint";
+		fpreset-gpios = <&ap_gpio 110 0x00>;
+		#fpint-gpios = <&ap_gpio 109 0x00>;
+		fpint-gpios = <&eic_async 29 0x00>;
+		vdd-supply = <&vddcammot1>;
+		power-type = <1>;
+		power-voltage = <3000000>;
+	};
+};

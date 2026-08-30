@@ -1,0 +1,33 @@
+&i2c6 {
+	status = "okay";
+	clock-frequency = <400000>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+	aw87xxx@58 {
+		compatible = "awinic,aw87xxx_pa";
+		reg = <0x58>;
+		dev_index = <0>;
+		status = "okay";
+	};
+};
+
+&sprd_headset {
+	status = "okay";
+	sprd,half-adc-gnd = <170>;
+};
+
+&sound_vbc_v4_sprd_codec {
+	status = "okay";
+	extral-iic-pa = <2>;
+
+	sprd-audio-card,routing =
+		"HPMIC Pin", "HP Mic Jack",
+		"MIC Pin", "Mic Jack",
+		"MIC2 Pin", "Aux Mic Jack",
+		"MIC3 Pin", "Aux Mic2 Jack",
+		"HeadPhone Jack", "HP Pin",
+		"Ext Spk", "SPK Pin",
+		"Ext Ear", "EAR Pin";
+};
+
+

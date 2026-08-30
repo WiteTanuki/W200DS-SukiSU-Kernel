@@ -1,0 +1,50 @@
+&spi1 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+	/delete-node/ touchpanel@0;
+	zte-ts@0 {
+		compatible = "focaltech,fts", "omnivision,tcm-spi";
+		reg = <0x00>;
+		spi-max-frequency = <6000000>;
+		focaltech,reset-gpio = <&ap_gpio 14 0x0000>;
+		focaltech,irq-gpio = <&eic_async 16 0x2008>;
+		focaltech,max-touch-number = <10>;
+		focaltech,display-coords =  <0 0 719 1611>;
+		omnivision,irq-gpio = <&eic_async 16 0x2008>; /* IRQF_ONESHOT | IRQF_TRIGGER_LOW */
+		omnivision,irq-on-state = <0>;
+		omnivision,reset-gpio = <&ap_gpio 14 0x0000>;
+		omnivision,reset-on-state = <0>;
+		omnivision,reset-active-ms = <20>;
+		omnivision,reset-delay-ms = <200>;
+		omnivision,spi-mode = <3>;
+		omnivision,byte-delay-us = <0>;
+		omnivision,block-delay-us = <0>;
+		omnivision,ubl-max-freq = <3000000>;
+		omnivision,ubl-byte-delay-us = <20>;
+		omnivision,panel-max-x = <719>;
+		omnivision,panel-max-y = <1611>;
+ 	};
+};
+
+/{
+	zte_tp:zte_tp {
+		compatible = "zte_tp";
+		zte,tp_algo;
+		zte,tp_long_press;
+		zte,tp_long_press_timer = <800>;
+		zte,tp_long_press_left_v = <12>;
+		zte,tp_long_press_right_v = <12>;
+		zte,tp_long_press_left_h = <16>; /*camera */
+		zte,tp_long_press_right_h = <12>; /*charger */
+		zte,tp_edge_click_suppression_pixel = <2>;
+		zte,ghost_check_config;
+		zte,ghost_check_single_time = <25>;
+		zte,ghost_check_multi_time = <20>;
+		zte,ghost_check_single_count = <5>;
+		zte,ghost_check_multi_count = <8>;
+		zte,ghost_check_start_time = <30>;
+		zte,ghost_check_ignore_id = <9>;
+	};
+
+};

@@ -1,0 +1,21 @@
+/*
+ * this file is ued to change sprd dtsi which can't be changed by overlay
+ * such as /delete-node/ /delete-property/ and alises
+ */
+#include "touchscreen.dtsi"
+#include "zte_camera_camelia.dtsi"
+#include "zte_charger_camelia.dtsi"
+#include "zte_audio.dtsi"
+#include "zte_sar.dtsi"
+
+/{
+	zcard_holder_det{
+		zcard-holder-det-gpios=<&eic_sync 36 GPIO_ACTIVE_HIGH>;
+	};
+};
+
+&reserved_memory {
+	/delete-node/ dptx_hdcp@fff10000;
+	/delete-node/ ise_med@bc000000;
+};
+

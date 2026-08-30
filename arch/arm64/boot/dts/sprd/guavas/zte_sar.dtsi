@@ -1,0 +1,20 @@
+&i2c2 {
+	status = "okay";
+	aw9160x_sar@12 {
+		compatible = "awinic,aw9610x_sar";
+		reg = <0x12>;
+
+		irq-gpio = <&ap_gpio 192 0>;
+		chip_name = "AW96103";
+		status = "okay" ;
+	};
+
+	stk501xx_sar@28 {
+		compatible = "stk,stk501xx";
+		reg = <0x28>;
+
+		stk501xx,irq-gpio = <&ap_gpio 192 0>;
+		chip_name = "STK50153";
+		status = "okay" ;
+	};
+};

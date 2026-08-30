@@ -1,0 +1,43 @@
+/*
+ * this file is ued to change sprd dtsi which can't be changed by overlay
+ * such as /delete-node/ /delete-property/ and alises
+ */
+
+#include "touchscreen.dtsi"
+#include "zte_charger_papaya.dtsi"
+#include "zte_audio.dtsi"
+#include "zte_camera.dtsi"
+#include "zte_nfc_st54j.dtsi"
+#include "zte_hall.dtsi"
+
+/{
+	zsk_keyboard {
+		compatible = "zte,zsk_keyboard";
+		zte,keyboard_id = <&ap_gpio 60 1>;
+		zte,keyboard_en = <&ap_gpio 62 0>;
+	};
+
+	zcard_holder_det {
+		zcard-holder-det-gpios= <&eic_sync 36 GPIO_ACTIVE_HIGH>;
+	};
+};
+
+&sdio0 {
+	status = "disabled";
+	non-removable;
+};
+
+&sdio1 {
+	status = "disabled";
+	non-removable;
+};
+
+&reserved_memory {
+	/delete-node/ dptx_hdcp@fff10000;
+	/delete-node/ ise_med@bc000000;
+};
+
+/*zte support wakeup for uart2*/
+&uart2 {
+	uart-gpio = <&eic_async 3 GPIO_ACTIVE_HIGH>;
+};

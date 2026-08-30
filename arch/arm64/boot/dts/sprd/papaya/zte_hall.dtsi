@@ -1,0 +1,12 @@
+/* add zte hall start */
+&soc {
+	hall_sensor {
+		compatible = "ah,hall_ic";
+		linux,min-uv = <1800000>;
+		linux,max-uv = <1800000>;
+		ah,gpio_irq = <&ap_gpio 148 0x0>;
+		linux,name = "hall_sensor";
+	};
+};
+
+/* add zte hall end */

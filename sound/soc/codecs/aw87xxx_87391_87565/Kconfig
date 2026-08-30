@@ -1,0 +1,16 @@
+config ZTE_SND_SOC_AW87XXX_AW87381_AW87565
+	tristate "SoC Audio for awinic AW87XXX Smart K PA"
+	depends on I2C
+	help
+	  This option enables support for AW87XXX Smart K PA.
+config ZTE_SND_SOC_AW87XXX_DOUBLE
+	tristate "SoC Audio for awinic AW87XXX Smart K PA ZTE_SND_SOC_AW87XXX_DOUBLE"
+	depends on I2C
+	help
+	  This option enables support for AW87XXX Smart K PA ZTE_SND_SOC_AW87XXX_DOUBLE.
+
+config ZTE_SND_SOC_AW87XXX_2IN1
+	tristate "SoC Audio for awinic AW87XXX Smart K PA ZTE_SND_SOC_AW87XXX_2IN1"
+	depends on I2C
+	help
+	  This option enables support for AW87XXX Smart K PA ZTE_SND_SOC_AW87XXX_2IN1.

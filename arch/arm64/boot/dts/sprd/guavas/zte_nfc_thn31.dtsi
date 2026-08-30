@@ -1,0 +1,33 @@
+&i2c2 {
+	status = "okay";
+        #address-cells = <1>;
+        #size-cells = <0>;
+        thn31_nfc@28 {
+                compatible = "tms,nfc";
+		reg = <0x28>;
+                interrupt-parent = <&ap_gpio>;
+                interrupts = <9 0>;
+		tms,device-name = "tms_nfc";
+		tms,device-count = <1>;
+                tms,irq-gpio = <&ap_gpio 127 0>;
+                tms,clkreq-gpio = <&ap_gpio 147 0>;
+                tms,ven-gpio = <&ap_gpio 112 1>;
+                tms,download-gpio = <&ap_gpio 186 0>;
+                interrupt-names = "nfc_int";
+                clock-names = "clk_aux","source","enable";
+                clocks = <&aonapb_gate CLK_AUX1>, <&pmu_gate CLK_26M_AUD>, <&aonapb_gate CLK_AUX1_EB>;
+        };
+};
+
+
+&spi2 {
+        status = "okay";
+        #address-cells = <1>;
+        #size-cells = <0>;
+        ese@0 {
+                compatible = "tms,ese";
+                reg = <0>;
+                spi-max-frequency = <8000000>;
+                tms,device-count   = <1>;
+        };
+};

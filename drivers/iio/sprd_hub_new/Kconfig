@@ -1,0 +1,33 @@
+#
+# SPRD Sensor Hub New drivers configuration
+#
+
+menu "Spreadtrum Sensor Hub new"
+
+config SPRD_SENSOR_HUB_NEW
+	tristate "Spreadtrum Sensor Hub New"
+	select IIO_BUFFER
+	select IIO_KFIFO_BUF
+	select IIO_TRIGGER
+	depends on SPRD_SIPC
+	depends on SPRD_SYSTIMER
+	help
+	  Support Sensor hub new Feature
+	  Provide power saving solution for integrating and
+	  processing sensor data.
+
+	  Say Y here to build support for sensor hub new.
+	  To compile this driver as a module, choose M here
+
+config VENDOR_ZTE_UNDER_PANEL_LIGHT
+	bool "Zte Under Panel Light"
+	help
+	  Zte Support Under Panel Light Feature to
+	  transform lcd backlight and fps to sensorhub
+
+config ZTE_SENSOR_CALI_SUPPORT
+	bool "Zte sensor cali algo support"
+	help
+	  Zte sensor cali algo Feature
+
+endmenu

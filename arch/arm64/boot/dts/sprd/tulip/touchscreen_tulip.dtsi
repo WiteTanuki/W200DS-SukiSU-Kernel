@@ -1,0 +1,42 @@
+&spi1 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+	/delete-node/ touchpanel@0;
+	zte-ts@0 {
+		compatible = "focaltech,fts";
+		reg = <0x00>;
+		spi-max-frequency = <6000000>;
+		vdd-supply = <&vddsdcore>;
+		focaltech,reset-gpio = <&ap_gpio 14 0x0000>;
+		focaltech,irq-gpio = <&eic_async 16 0X2008>;
+		focaltech,max-touch-number = <10>;
+		focaltech,display-coords =  <0 0 8640 19200>;
+ 	};
+};
+
+/{
+	zte_tp:zte_tp {
+		compatible = "zte_tp";
+		zte,tp_algo;
+		zte,tp_long_press;
+		zte,tp_long_press_timer = <800>;
+		zte,tp_long_press_left_v = <150>;
+		zte,tp_long_press_right_v = <150>;
+		zte,tp_long_press_left_h = <150>; /*camera */
+		zte,tp_long_press_right_h = <150>; /*charger */
+		zte,tp_edge_click_suppression_pixel = <30>;
+		zte,ufp_enable;
+		zte,ufp_circle_center_x = <4320>;
+		zte,ufp_circle_center_y = <17456>;
+		zte,ufp_circle_radius = <640>;
+		zte,ghost_check_config;
+		zte,ghost_check_single_time = <25>;
+		zte,ghost_check_multi_time = <20>;
+		zte,ghost_check_single_count = <5>;
+		zte,ghost_check_multi_count = <8>;
+		zte,ghost_check_start_time = <30>;
+		zte,ghost_check_ignore_id = <9>;
+	};
+
+};

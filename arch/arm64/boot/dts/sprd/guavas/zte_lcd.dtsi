@@ -1,0 +1,17 @@
+
+&dphy {
+	/delete-property/ sprd,ulps-disabled;
+};
+
+&panel {
+	/*sprd,surface-width = <720>;
+	sprd,surface-height = <1440>;*/
+	iovdd-gpio = <&ap_gpio 148 GPIO_ACTIVE_HIGH>;
+	avdd-gpio = <&ap_gpio 189 GPIO_ACTIVE_HIGH>;
+	avee-gpio = <&ap_gpio 190 GPIO_ACTIVE_HIGH>;
+	reset-gpio = <&ap_gpio 11 GPIO_ACTIVE_HIGH>;
+};
+
+&dptx {
+	status = "disable";
+};

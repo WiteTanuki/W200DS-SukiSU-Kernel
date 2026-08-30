@@ -1,0 +1,48 @@
+/*
+ * this file is ued to change sprd dtsi which can't be changed by overlay
+ * such as /delete-node/ /delete-property/ and alises
+ */
+
+#include "touchscreen.dtsi"
+#include "zte_charger.dtsi"
+#include "zte_audio.dtsi"
+#include "zte_camera.dtsi"
+#include "zte_nfc_st54j.dtsi"
+#include "zte_fingerprint_caltrop.dtsi"
+
+/{
+	zte_tp:zte_tp {
+		compatible = "zte_tp";
+		zte,tp_algo;
+		zte,tp_long_press;
+		zte,tp_long_press_timer = <800>;
+		zte,tp_long_press_left_v = <15>;
+		zte,tp_long_press_right_v = <15>;
+		zte,tp_long_press_left_h = <20>; /*camera */
+		zte,tp_long_press_right_h = <15>; /*charger */
+		zte,tp_edge_click_suppression_pixel = <3>;
+	};
+
+
+	zcard_holder_det {
+		zcard-holder-det-gpios= <&eic_sync 36 GPIO_ACTIVE_HIGH>;
+	};
+
+	beilu_gpio_ctl {
+		beilumcu-reset-gpio = <&ap_gpio 175 0>;
+		beilumcu-en-gpio = <&ap_gpio 176 0>;
+		beilumcu-irq-gpio = <&ap_gpio 184 0>;
+		beilumcu-ready-gpio = <&ap_gpio 181 0>;
+	};
+};
+
+&sdio0 {
+	status = "disabled";
+	non-removable;
+};
+
+&reserved_memory {
+	/delete-node/ dptx_hdcp@fff10000;
+	/delete-node/ ise_med@bc000000;
+};
+
