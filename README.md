@@ -67,8 +67,7 @@ Manager APK、Magisk/KernelSU 模块、OEM 固件、分区备份、FDL loader、
 | KernelSU ADB Root | ❌ 未启用 | ADB 默认仍为普通 Shell |
 
 初版候选已在唯一受测设备上完成启动、Manager 识别、SELinux Enforcing、模块
-重启持久性和回退验证。Google 服务与 Apple Music 只是发布时用户侧的人工观察，
-不是兼容性认证；应用、模块、服务端策略或固件更新后结果可能变化。
+重启持久性和回退验证。应用、模块、服务端策略或固件更新后结果可能变化。
 
 ### 获取源码与发布物
 
@@ -299,9 +298,7 @@ fingerprint match.
 | KernelSU ADB Root | ❌ Disabled | ADB remains an ordinary shell by default |
 
 The initial candidate passed boot, Manager detection, SELinux Enforcing, module
-reboot persistence and rollback checks on the one tested device. Google services
-and Apple Music were owner-observed checks on that setup, not compatibility
-certifications. Results can change with an app, module, server policy or firmware
+reboot persistence and rollback checks on the one tested device. Results can change with an app, module, server policy or firmware
 update.
 
 ### Getting the source and artifacts
