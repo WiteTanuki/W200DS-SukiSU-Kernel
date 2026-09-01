@@ -1,3 +1,17 @@
+W200DS SukiSU Kernel 是一个非官方聚合项目和面向特定设备的移植版本。
+
+Linux 内核及 SukiSU/KernelSU 衍生内核代码继续受本源码树中随附的
+GPL-2.0-only 和逐文件 SPDX 声明约束。KernelPatch 运行时源码位于
+tools/kernelpatch-runtime，并保留自身的 GPL-2.0 许可证和声明。
+SUSFS 衍生代码保留上游版权声明，GPL-3.0-or-later 文本存放在
+LICENSES/third-party/SUSFS-GPL-3.0-or-later.txt。
+
+本源码仓库不包含 OEM 固件、私钥、Manager APK 或第三方 root 模块。
+组件版本和本次发布的再分发说明请参阅
+Documentation/w200ds/THIRD-PARTY-NOTICES.md。
+
+--- English ---
+
 W200DS SukiSU Kernel is an unofficial aggregation and device-specific port.
 
 The Linux kernel and the SukiSU/KernelSU-derived kernel code remain subject to
@@ -10,4 +24,3 @@ LICENSES/third-party/SUSFS-GPL-3.0-or-later.txt.
 No OEM firmware, private key, Manager APK or third-party root module is part of
 the source repository. See Documentation/w200ds/THIRD-PARTY-NOTICES.md for
 component revisions and the release-specific redistribution note.
-

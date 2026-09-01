@@ -216,16 +216,22 @@ fastboot reboot
 | [THIRD-PARTY-NOTICES.md](Documentation/w200ds/THIRD-PARTY-NOTICES.md) | 第三方来源、许可和排除项 |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | 提交补丁的最小规范 |
 
+以上 W200DS 专用文档均提供完整简体中文，并保留英文对照。上游 Linux 原始文档
+保持原文，避免改变上游技术语义、版权或许可记录。
+
 ### 问题反馈与贡献
 
-Issue 应包含版本/标签、完整固件指纹、`uname -a`、Manager 版本、模块列表、最小
-复现步骤、预期/实际结果、脱敏日志，以及是否仍有 stock boot 回退路径。请先确认
-问题在全部模块关闭后是否仍可复现。
+Issue 应只包含复现问题所必需的信息：版本/标签、完整固件指纹、`uname -a`、
+Manager 版本、仅与问题相关的模块及其版本、最小复现步骤、预期/实际结果、经过
+裁剪和脱敏的日志，以及是否仍有 stock boot 回退路径。请先确认问题在全部模块
+关闭后是否仍可复现。
 
 请删除序列号、账户、token、密钥、keybox、attestation 数据及个人信息；不要上传
-OEM 固件、分区 dump 或私有模块。内核补丁应遵循 Linux kernel coding style，运行
-`scripts/checkpatch.pl`，保留来源和 SPDX 信息，并使用 `git commit -s` 添加真实的
-`Signed-off-by`。详见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+OEM 固件、分区 dump、私有模块、个人应用清单、无关截图或完整设备日志。目标应用
+身份与问题无关时，请使用“目标应用”等通用称呼。内核补丁应遵循 Linux kernel
+coding style，运行 `scripts/checkpatch.pl`，保留来源和 SPDX 信息，并使用
+`git commit -s` 添加真实的 `Signed-off-by`。详见
+[CONTRIBUTING.md](CONTRIBUTING.md)。
 
 ### 许可证、来源与致谢
 
@@ -463,16 +469,23 @@ See [KNOWN-LIMITATIONS.md](Documentation/w200ds/KNOWN-LIMITATIONS.md).
 | [THIRD-PARTY-NOTICES.md](Documentation/w200ds/THIRD-PARTY-NOTICES.md) | Provenance, licensing and excluded material |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Minimum patch-submission rules |
 
+All W200DS-specific documents above provide complete Simplified Chinese text and
+retain an English counterpart. Original upstream Linux documentation stays in
+its source language to preserve upstream technical, copyright and license text.
+
 ### Issues and contributions
 
-An issue should include the release/tag, complete firmware fingerprint,
-`uname -a`, Manager version, module list, minimal reproduction, expected and
-actual results, sanitized logs, and whether a stock-boot recovery path is still
-available. First confirm whether the issue persists with all modules disabled.
+An issue should include only what is necessary to reproduce it: the release/tag,
+complete firmware fingerprint, `uname -a`, Manager version, only relevant
+modules and versions, minimal reproduction, expected and actual results, trimmed
+and sanitized logs, and whether a stock-boot recovery path is still available.
+First confirm whether the issue persists with all modules disabled.
 
 Remove serial numbers, accounts, tokens, keys, keyboxes, attestation data and
-other personal information. Never upload OEM firmware, partition dumps or
-private modules. Kernel patches should follow Linux kernel coding style, run
+other personal information. Never upload OEM firmware, partition dumps, private
+modules, personal app inventories, unrelated screenshots or complete device
+logs. Use a generic name such as “target app” when its identity is irrelevant.
+Kernel patches should follow Linux kernel coding style, run
 `scripts/checkpatch.pl`, preserve provenance and SPDX notices, and add a genuine
 `Signed-off-by` with `git commit -s`. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
