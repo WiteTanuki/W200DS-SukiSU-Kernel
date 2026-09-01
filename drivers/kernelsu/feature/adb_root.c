@@ -11,8 +11,10 @@
 #include "feature/adb_root.h"
 #include "infra/kernel_compat.h"
 #include "klog.h"
+#include "policy/app_profile.h"
 #include "policy/feature.h"
 #include "selinux/selinux.h"
+#include "uapi/feature.h"
 
 #ifdef KSU_COMPAT_USE_STATIC_KEY
 DEFINE_STATIC_KEY_FALSE(ksu_adb_root);
@@ -23,11 +25,18 @@ bool ksu_adb_root __read_mostly = false;
 #ifdef CONFIG_KSU_SUSFS
 static inline long is_exec_adbd(const char *filename)
 {
+    static const char kAdbdPrefix[] = "/apex/";
+    static const char kAdbdSuffix[] = "/adbd";
+    const size_t prefix_len = sizeof(kAdbdPrefix) - 1;
+    const size_t suffix_len = sizeof(kAdbdSuffix) - 1;
+    size_t len = strlen(filename);
+
     if (strstr(filename, "adbd"))
         pr_info("is_exec_adbd() => filename: %s\n", filename);
 
-    return (susfs_starts_with(filename, "/apex/") &&
-                susfs_ends_with(filename, "/adbd"));
+    return len >= prefix_len + suffix_len &&
+           !memcmp(filename, kAdbdPrefix, prefix_len) &&
+           !memcmp(filename + len - suffix_len, kAdbdSuffix, suffix_len);
 }
 #else
 static const char kAdbd[] = "/adbd";
