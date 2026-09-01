@@ -30,6 +30,7 @@
 #include "feature/kernel_umount.h"
 #include "feature/sucompat.h"
 #include "feature/sulog.h"
+#include "feature/selinux_hide_5_4.h"
 #include "hook/lsm_hook.h"
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0)
 #include "feature/selinux_hide.h"
@@ -96,6 +97,8 @@ int __init kernelsu_init(void)
     ksu_sulog_init();
 
     ksu_adb_root_init();
+
+    ksu_selinux_hide_5_4_init();
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0)
     ksu_selinux_hide_init();

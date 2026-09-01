@@ -22,6 +22,7 @@ kernelsu-objs += feature/sucompat.o
 kernelsu-objs += feature/sulog.o
 kernelsu-objs += feature/uts_spoof.o
 kernelsu-$(CONFIG_KSU_FEATURE_ADBROOT) += feature/adb_root.o
+kernelsu-$(CONFIG_KSU_FEATURE_SELINUX_HIDE_5_4) += feature/selinux_hide_5_4.o
 
 kernelsu-objs += runtime/ksud.o
 kernelsu-objs += sulog/event.o

@@ -15,6 +15,14 @@ config KSU_FEATURE_ADBROOT
 	help
 	  Build KernelSU's adb root feature.
 
+config KSU_FEATURE_SELINUX_HIDE_5_4
+	bool "KernelSU SELinux hide contract for Linux 5.4"
+	depends on KSU && SECURITY_SELINUX
+	default n
+	help
+	  Build the default-disabled Linux 5.4 SELinux-hide feature contract.
+	  The clean policy view is implemented in later development gates.
+
 config KSU_DEBUG
 	bool "KernelSU debug mode"
 	depends on KSU
