@@ -50,10 +50,9 @@ export ANDROID_NDK_HOME=/absolute/path/to/android-ndk-r29
 - 原始 Image：`be5f744963f9eca5b7b84e37747cb191aabc28d4019d403e31f43f221edaf16e`
 - 后链接 Image：`4bf47964827f138c6941b0e0c90f8500763f3b7b9b2ac60e52770c9590152ff7`
 - 已标记 Image：`cea4afc177e56e93c8fbc7ed794767595b6c0d826e7e40b2e2f99d514b3cebfb`
-- Boot 候选镜像：`1cd91b2119848a674c3473a6a609926591c5e0b37d48bf2aa95fcd6af3fceb6c`
+- 受测 Boot 镜像：`1cd91b2119848a674c3473a6a609926591c5e0b37d48bf2aa95fcd6af3fceb6c`
 
-以上是 `v0.2.0-rc1` 的主机验收身份；只有该 boot 通过唯一受测设备采用后，才能
-把“候选”状态改为正式受测发布物。
+以上是 `v0.2.0-rc1` 的主机验收身份；该 boot 已在唯一受测设备完成采用。
 
 ---
 
@@ -113,7 +112,7 @@ the accepted output hash. It never connects to or writes a device.
 - Raw Image: `be5f744963f9eca5b7b84e37747cb191aabc28d4019d403e31f43f221edaf16e`
 - Post-linked Image: `4bf47964827f138c6941b0e0c90f8500763f3b7b9b2ac60e52770c9590152ff7`
 - Marked Image: `cea4afc177e56e93c8fbc7ed794767595b6c0d826e7e40b2e2f99d514b3cebfb`
-- Boot candidate: `1cd91b2119848a674c3473a6a609926591c5e0b37d48bf2aa95fcd6af3fceb6c`
+- Accepted boot image: `1cd91b2119848a674c3473a6a609926591c5e0b37d48bf2aa95fcd6af3fceb6c`
 
-These are the host-accepted identities for `v0.2.0-rc1`. The boot remains a
-candidate until it passes adoption on the one tested device.
+These are the host-accepted identities for `v0.2.0-rc1`; the boot passed
+adoption on the one tested device.

@@ -67,10 +67,10 @@ Manager APK、Magisk/KernelSU 模块、OEM 固件、分区备份、FDL loader、
 | 隐藏 SELinux 修改 | ✅ 已实现 | Linux 5.4 原生只读 clean-view；不削弱实际策略 |
 | KernelSU ADB Root | ✅ 已实现 | 由 Manager 显式启用；默认保持关闭 |
 
-同源码血统的设备版本已完成启动、Manager 识别、SELinux Enforcing、模块重启持久性、
-ADB Root 开关、SELinux clean-view 和回退验证。当前精确 SHA-256 的 `v0.2.0-rc1`
-boot 已通过主机验收，仍须完成最终设备采用后才能作为正式受测发布物。应用、模块、
-服务端策略或固件更新后结果可能变化。
+精确 SHA-256 的 `v0.2.0-rc1` boot 已在唯一受测设备完成启动、标记采用、Manager
+识别、SELinux Enforcing 与普通 ADB Shell 验收；同源码血统设备版本还完成了模块
+重启持久性、ADB Root 开关、SELinux clean-view 和回退验证。应用、模块、服务端
+策略或固件更新后结果可能变化。
 
 ### 获取源码与发布物
 
@@ -87,7 +87,7 @@ git checkout v0.2.0-rc1
 - 不要使用聊天群、网盘或论坛中的同名镜像，除非 SHA-256 与本仓库记录完全一致。
 - SukiSU Manager 和模块请从各自官方项目获取，本仓库不捆绑 APK 或模块。
 
-v0.2.0-rc1 主机验收 boot 候选身份：
+v0.2.0-rc1 受测 boot 身份：
 
 ```text
 SHA-256  1cd91b2119848a674c3473a6a609926591c5e0b37d48bf2aa95fcd6af3fceb6c
@@ -309,12 +309,11 @@ fingerprint match.
 | Hide SELinux modifications | ✅ Implemented | Native Linux 5.4 read-only clean view; policy is not weakened |
 | KernelSU ADB Root | ✅ Implemented | Explicit Manager opt-in; disabled by default |
 
-Device builds from the same source lineage passed boot, Manager detection,
-SELinux Enforcing, module reboot persistence, the ADB Root toggle, SELinux clean
-view and rollback checks. The exact `v0.2.0-rc1` boot SHA-256 is host-accepted
-but remains pending final device adoption before it can be called a tested
-release artifact. Results can change with an app, module, server policy or
-firmware update.
+The exact `v0.2.0-rc1` boot SHA-256 passed boot, marker adoption, Manager
+detection, SELinux Enforcing and ordinary ADB Shell checks on the one tested
+device. Builds from the same source lineage also passed module reboot
+persistence, the ADB Root toggle, SELinux clean view and rollback checks.
+Results can change with an app, module, server policy or firmware update.
 
 ### Getting the source and artifacts
 
@@ -334,7 +333,7 @@ git checkout v0.2.0-rc1
 - Obtain SukiSU Manager and modules from their own official projects. This
   repository does not bundle APKs or modules.
 
-Host-accepted v0.2.0-rc1 boot candidate identity:
+Accepted v0.2.0-rc1 boot identity:
 
 ```text
 SHA-256  1cd91b2119848a674c3473a6a609926591c5e0b37d48bf2aa95fcd6af3fceb6c
