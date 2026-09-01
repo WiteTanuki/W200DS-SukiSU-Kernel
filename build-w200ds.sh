@@ -6,8 +6,8 @@ out=${OUT:-"$repo/out/w200ds-r11"}
 jobs=${JOBS:-8}
 clang_bin=${CLANG_BIN:?set CLANG_BIN to clang-r416183b/bin}
 config="$repo/arch/arm64/configs/w200ds_r11_defconfig"
-expected_config=f0a99476257ad85eaf5669a9dc4e082fca4435c8e8c7aea6aca83cb1213ff897
-expected_image=ec46347cfc1ad9b2ce765d010afd0bf88ab742e888ec4568507aaf39a4cfafb0
+expected_config=f65e65f067d753eba838a479e075b91feb5f87027e191f58cd51e6e7e1501a77
+expected_image=SET_AFTER_V0_2_0_RC1_BUILD
 
 sha256() { sha256sum "$1" | awk '{print $1}'; }
 [[ -x "$clang_bin/clang" ]] || { echo "missing clang: $clang_bin/clang" >&2; exit 1; }
@@ -18,6 +18,13 @@ sha256() { sha256sum "$1" | awk '{print $1}'; }
 mkdir -p "$out"
 install -m 0644 "$config" "$out/.config"
 export PATH="$clang_bin:$PATH"
+export KBUILD_BUILD_USER=release
+export KBUILD_BUILD_HOST=w200ds
+export KBUILD_BUILD_TIMESTAMP=@1788192000
+export KBUILD_BUILD_VERSION=1
+export SOURCE_DATE_EPOCH=1788192000
+export KCFLAGS="-fdebug-prefix-map=$repo=/usr/src/w200ds-kernel -ffile-prefix-map=$repo=/usr/src/w200ds-kernel -fmacro-prefix-map=$repo=/usr/src/w200ds-kernel -fdebug-prefix-map=$out=/usr/src/w200ds-kernel-out -ffile-prefix-map=$out=/usr/src/w200ds-kernel-out -fmacro-prefix-map=$out=/usr/src/w200ds-kernel-out"
+export KAFLAGS="$KCFLAGS"
 common=( -C "$repo" O="$out" ARCH=arm64 LLVM=1 LLVM_IAS=1
   CROSS_COMPILE=aarch64-linux-gnu-
   CROSS_COMPILE_COMPAT=arm-linux-androidkernel- )
@@ -30,4 +37,3 @@ image="$out/arch/arm64/boot/Image"
 echo "IMAGE=$image"
 echo "IMAGE_SHA256=$(sha256 "$image")"
 echo "KERNELRELEASE=$(make -s "${common[@]}" kernelrelease)"
-
