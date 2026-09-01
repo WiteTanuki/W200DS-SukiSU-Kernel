@@ -93,6 +93,7 @@
 #include <linux/fanotify.h>
 
 #include "avc.h"
+#include "ksu_selinux_hide_5_4.h"
 #include "objsec.h"
 #include "netif.h"
 #include "netnode.h"
@@ -6498,6 +6499,12 @@ static int selinux_setprocattr(const char *name, void *value, size_t size)
 		if (str[size-1] == '\n') {
 			str[size-1] = 0;
 			size--;
+		}
+		if (!strcmp(name, "current")) {
+			error = ksu_selinux_clean_view_validate_context(
+				&selinux_state, value, size);
+			if (error)
+				return error;
 		}
 		error = security_context_to_sid(&selinux_state, value, size,
 						&sid, GFP_KERNEL);

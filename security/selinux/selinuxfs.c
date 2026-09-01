@@ -37,6 +37,7 @@
 #include "flask.h"
 #include "avc.h"
 #include "avc_ss.h"
+#include "ksu_selinux_hide_5_4.h"
 #include "security.h"
 #include "objsec.h"
 #include "conditional.h"
@@ -232,7 +233,10 @@ static const struct file_operations sel_handle_unknown_ops = {
 static int sel_open_handle_status(struct inode *inode, struct file *filp)
 {
 	struct selinux_fs_info *fsi = file_inode(filp)->i_sb->s_fs_info;
-	struct page    *status = selinux_kernel_status_page(fsi->state);
+	struct page *status = ksu_selinux_clean_view_status_page(fsi->state);
+
+	if (!status)
+		status = selinux_kernel_status_page(fsi->state);
 
 	if (!status)
 		return -ENOMEM;
@@ -750,6 +754,8 @@ static ssize_t sel_write_context(struct file *file, char *buf, size_t size)
 			      SECCLASS_SECURITY, SECURITY__CHECK_CONTEXT, NULL);
 	if (length)
 		goto out;
+	state = ksu_selinux_clean_view_select(state,
+					      KSU_SELINUX_QUERY_CONTEXT);
 
 	length = security_context_to_sid(state, buf, size, &sid, GFP_KERNEL);
 	if (length)
@@ -972,6 +978,8 @@ static ssize_t sel_write_access(struct file *file, char *buf, size_t size)
 			      SECCLASS_SECURITY, SECURITY__COMPUTE_AV, NULL);
 	if (length)
 		goto out;
+	state = ksu_selinux_clean_view_select(state,
+					      KSU_SELINUX_QUERY_ACCESS);
 
 	length = -ENOMEM;
 	scon = kzalloc(size + 1, GFP_KERNEL);

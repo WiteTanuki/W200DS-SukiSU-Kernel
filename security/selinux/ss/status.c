@@ -11,6 +11,7 @@
 #include <linux/mm.h>
 #include <linux/mutex.h>
 #include "avc.h"
+#include "ksu_selinux_hide_5_4.h"
 #include "services.h"
 
 /*
@@ -94,6 +95,7 @@ void selinux_status_update_setenforce(struct selinux_state *state,
 		status->sequence++;
 	}
 	mutex_unlock(&state->ss->status_lock);
+	ksu_selinux_clean_view_update_enforcing(enforcing);
 }
 
 /*

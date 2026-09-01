@@ -100,6 +100,8 @@ struct context *sidtab_search(struct sidtab *s, u32 sid);
 struct context *sidtab_search_force(struct sidtab *s, u32 sid);
 
 int sidtab_convert(struct sidtab *s, struct sidtab_convert_params *params);
+int sidtab_convert_finish(struct sidtab *s,
+			  struct sidtab_convert_params *params);
 
 int sidtab_context_to_sid(struct sidtab *s, struct context *context, u32 *sid);
 
@@ -108,5 +110,4 @@ void sidtab_destroy(struct sidtab *s);
 int sidtab_hash_stats(struct sidtab *sidtab, char *page);
 
 #endif	/* _SS_SIDTAB_H_ */
-
 

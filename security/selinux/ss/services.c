@@ -53,6 +53,7 @@
 #include "flask.h"
 #include "avc.h"
 #include "avc_ss.h"
+#include "ksu_selinux_hide_5_4.h"
 #include "security.h"
 #include "context.h"
 #include "policydb.h"
@@ -81,6 +82,9 @@ static struct selinux_ss selinux_ss;
 void selinux_ss_init(struct selinux_ss **ss)
 {
 	rwlock_init(&selinux_ss.policy_rwlock);
+#ifdef CONFIG_KSU_FEATURE_SELINUX_HIDE_5_4
+	mutex_init(&selinux_ss.policy_load_mutex);
+#endif
 	mutex_init(&selinux_ss.status_lock);
 	*ss = &selinux_ss;
 }
@@ -2157,6 +2161,12 @@ int security_load_policy(struct selinux_state *state, void *data, size_t len)
 	int rc = 0;
 	struct policy_file file = { data, len }, *fp = &file;
 
+#ifdef CONFIG_KSU_FEATURE_SELINUX_HIDE_5_4
+	mutex_lock(&state->ss->policy_load_mutex);
+	if (state->initialized)
+		ksu_selinux_clean_view_retire();
+#endif
+
 	oldpolicydb = kcalloc(2, sizeof(*oldpolicydb), GFP_KERNEL);
 	if (!oldpolicydb) {
 		rc = -ENOMEM;
@@ -2298,6 +2308,9 @@ err:
 
 out:
 	kfree(oldpolicydb);
+#ifdef CONFIG_KSU_FEATURE_SELINUX_HIDE_5_4
+	mutex_unlock(&state->ss->policy_load_mutex);
+#endif
 	return rc;
 }
 

@@ -10,6 +10,7 @@
 #include <uapi/linux/sched/types.h>
 
 #include "avc_ss.h"
+#include "ksu_selinux_hide_5_4.h"
 #include "klog.h"
 #include "security.h"
 #include "selinux/selinux.h"
@@ -171,7 +172,12 @@ static int apply_kernelsu_rules_fn(void *ptr)
 
 void apply_kernelsu_rules(void)
 {
-    struct policydb *db;
+	struct policydb *db;
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 10, 0) && \
+	defined(CONFIG_KSU_FEATURE_SELINUX_HIDE_5_4)
+	bool clean_view_prepared = false;
+	int clean_view_rc;
+#endif
 
     if (!getenforce()) {
         pr_info("SELinux permissive or disabled, apply rules!\n");
@@ -221,12 +227,27 @@ out_unlock:
     mutex_unlock(&selinux_state.policy_mutex);
 #else
 
-    cpumask_t old_mask;
-    db = get_policydb();
+	cpumask_t old_mask;
+	db = get_policydb();
 
-    rwlock_t *lock = ksu_get_policy_rwlock();
-    if (!lock)
-        goto do_stop_machine;
+#ifdef CONFIG_KSU_FEATURE_SELINUX_HIDE_5_4
+	clean_view_rc = ksu_selinux_clean_view_prepare(&selinux_state);
+	clean_view_prepared = !clean_view_rc;
+	if (clean_view_rc && clean_view_rc != -EALREADY)
+		pr_warn("selinux_hide_5_4: clean view unavailable: %d\n",
+			clean_view_rc);
+#endif
+
+	rwlock_t *lock = ksu_get_policy_rwlock();
+	if (!lock) {
+#ifdef CONFIG_KSU_FEATURE_SELINUX_HIDE_5_4
+		if (clean_view_prepared) {
+			ksu_selinux_clean_view_abort(&selinux_state);
+			clean_view_prepared = false;
+		}
+#endif
+		goto do_stop_machine;
+	}
 
     /*
 	 * HACK: write_lock() is held with preempt enabled. DO NOT let the
@@ -238,8 +259,18 @@ out_unlock:
     set_cpus_allowed_ptr(current, cpumask_of(raw_smp_processor_id()));
 
     pr_info("%s: type: policy_rwlock \n", __func__);
-    write_lock(lock);
-    preempt_enable();
+	write_lock(lock);
+	preempt_enable();
+
+#ifdef CONFIG_KSU_FEATURE_SELINUX_HIDE_5_4
+	if (clean_view_prepared) {
+		clean_view_rc =
+			ksu_selinux_clean_view_publish_locked(&selinux_state);
+		if (clean_view_rc)
+			pr_warn("selinux_hide_5_4: clean view publish failed: %d\n",
+				clean_view_rc);
+	}
+#endif
 
     // we do this dance since both kernel and userspace can trigger this
     if (likely(current && current->mm))
@@ -260,9 +291,13 @@ has_current_mm:;
 
 out_unlock:
     preempt_disable();
-    write_unlock(lock);
-    set_cpus_allowed_ptr(current, &old_mask);
-    goto out_flush;
+	write_unlock(lock);
+	set_cpus_allowed_ptr(current, &old_mask);
+#ifdef CONFIG_KSU_FEATURE_SELINUX_HIDE_5_4
+	if (clean_view_prepared)
+		ksu_selinux_clean_view_finish(&selinux_state);
+#endif
+	goto out_flush;
 
 do_stop_machine:
     pr_info("%s: type: stop_machine()\n", __func__);

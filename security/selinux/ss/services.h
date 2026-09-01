@@ -27,6 +27,10 @@ struct selinux_ss {
 	struct sidtab *sidtab;
 	struct policydb policydb;
 	rwlock_t policy_rwlock;
+#ifdef CONFIG_KSU_FEATURE_SELINUX_HIDE_5_4
+	/* Serializes a clean-view build against policy replacement. */
+	struct mutex policy_load_mutex;
+#endif
 	u32 latest_granting;
 	struct selinux_map map;
 	struct page *status_page;

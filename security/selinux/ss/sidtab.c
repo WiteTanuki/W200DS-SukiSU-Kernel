@@ -439,6 +439,26 @@ int sidtab_convert(struct sidtab *s, struct sidtab_convert_params *params)
 	return 0;
 }
 
+/*
+ * End a successful live conversion without destroying the source sidtab.
+ * The source lock also waits for an in-flight sidtab_context_to_sid() mirror.
+ */
+int sidtab_convert_finish(struct sidtab *s,
+			  struct sidtab_convert_params *params)
+{
+	unsigned long flags;
+	int rc = 0;
+
+	spin_lock_irqsave(&s->lock, flags);
+	if (s->convert != params)
+		rc = -ESTALE;
+	else
+		s->convert = NULL;
+	spin_unlock_irqrestore(&s->lock, flags);
+
+	return rc;
+}
+
 static void sidtab_destroy_tree(union sidtab_entry_inner entry, u32 level)
 {
 	u32 i;

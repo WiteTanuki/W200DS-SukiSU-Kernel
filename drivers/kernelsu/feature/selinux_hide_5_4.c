@@ -4,6 +4,7 @@
 #include <linux/version.h>
 
 #include "feature/selinux_hide_5_4.h"
+#include "ksu_selinux_hide_5_4.h"
 #include "klog.h"
 #include "policy/feature.h"
 #include "uapi/feature.h"
@@ -15,14 +16,15 @@
 
 static int selinux_hide_5_4_get(u64 *value)
 {
-	*value = 0;
+	*value = ksu_selinux_clean_view_enabled();
 	return 0;
 }
 
 static int selinux_hide_5_4_set(u64 value)
 {
-	/* SH1 exposes the contract but cannot enable it before the clean view exists. */
-	return value ? -EAGAIN : 0;
+	if (value > 1)
+		return -EINVAL;
+	return ksu_selinux_clean_view_set_enabled(value);
 }
 
 static const struct ksu_feature_handler selinux_hide_5_4_handler = {
