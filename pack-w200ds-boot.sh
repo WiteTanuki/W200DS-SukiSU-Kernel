@@ -6,9 +6,9 @@ image=${2:?usage: $0 STOCK_BOOT MARKED_IMAGE MAGISKBOOT OUTPUT_BOOT}
 magiskboot=${3:?usage: $0 STOCK_BOOT MARKED_IMAGE MAGISKBOOT OUTPUT_BOOT}
 output=${4:?usage: $0 STOCK_BOOT MARKED_IMAGE MAGISKBOOT OUTPUT_BOOT}
 expected_stock=9ddb0f2b4bd2ce86cacad2d7091deb02edc87a564937e68560172b1f7877350e
-expected_image=244e6dc3efab05ecbfc3de6ded31714a0cb87e2a7c7e02bcfaff1f1603f17e06
+expected_image=cea4afc177e56e93c8fbc7ed794767595b6c0d826e7e40b2e2f99d514b3cebfb
 expected_magiskboot=a918c7033118829513c410af7eae6dd0a3c8fde97408b64f7a0bfd49aad3230b
-expected_output=a0a52b34a1de45ae4dedf8298da65f87bb423e8f0eb78a7022ee427524210055
+expected_output=1cd91b2119848a674c3473a6a609926591c5e0b37d48bf2aa95fcd6af3fceb6c
 sha256() { sha256sum "$1" | awk '{print $1}'; }
 
 [[ ! -e "$output" ]]

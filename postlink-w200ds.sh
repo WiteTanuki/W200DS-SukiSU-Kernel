@@ -4,10 +4,10 @@ set -euo pipefail
 input=${1:?usage: $0 INPUT_IMAGE RUNTIME_DIR OUTPUT_IMAGE}
 runtime=${2:?usage: $0 INPUT_IMAGE RUNTIME_DIR OUTPUT_IMAGE}
 output=${3:?usage: $0 INPUT_IMAGE RUNTIME_DIR OUTPUT_IMAGE}
-expected_input=ec46347cfc1ad9b2ce765d010afd0bf88ab742e888ec4568507aaf39a4cfafb0
+expected_input=be5f744963f9eca5b7b84e37747cb191aabc28d4019d403e31f43f221edaf16e
 expected_kpimg=34bab04a68b28fae689d144ad1245c9271cf53a172068340050adf160211cbbb
 expected_tools=c6fd32e3235166efc2f5bc784b1486154d16299da550cf4d4a339a960f484cae
-expected_output=63d853aa9ee85e339ccd2c4c7fac2435888eb45b0c5f6d141477bec8bb0caae3
+expected_output=4bf47964827f138c6941b0e0c90f8500763f3b7b9b2ac60e52770c9590152ff7
 sha256() { sha256sum "$1" | awk '{print $1}'; }
 
 [[ ! -e "$output" ]]

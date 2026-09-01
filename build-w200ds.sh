@@ -7,7 +7,7 @@ jobs=${JOBS:-8}
 clang_bin=${CLANG_BIN:?set CLANG_BIN to clang-r416183b/bin}
 config="$repo/arch/arm64/configs/w200ds_r11_defconfig"
 expected_config=f65e65f067d753eba838a479e075b91feb5f87027e191f58cd51e6e7e1501a77
-expected_image=SET_AFTER_V0_2_0_RC1_BUILD
+expected_image=be5f744963f9eca5b7b84e37747cb191aabc28d4019d403e31f43f221edaf16e
 
 sha256() { sha256sum "$1" | awk '{print $1}'; }
 [[ -x "$clang_bin/clang" ]] || { echo "missing clang: $clang_bin/clang" >&2; exit 1; }
