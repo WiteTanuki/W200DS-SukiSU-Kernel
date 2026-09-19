@@ -22,10 +22,18 @@ GA boot 的 ramdisk 与 RC1 boot 完全一致。
 
 ### 验收状态
 
-RC1 已在唯一受测设备完成模块加载、3 次普通重启、2 次冷启动、超过 72 小时运行和
+RC1 已在唯一受测设备完成 SukiSU 模块框架加载、3 次普通重启、2 次冷启动、超过 72 小时运行和
 硬件功能验收。GA 还完成了主机侧等价性、可复现性和一次精确 `boot_a` 采用；启动后
 `v0.2ga1@w200ds`、A 槽、normal、SELinux Enforcing、普通 ADB Shell、SukiSU Manager、
-既有活动模块及 ADB Root 默认关闭均通过。没有自动重试、自动回退或其他分区写入。
+SukiSU 模块框架及 ADB Root 默认关闭均通过。没有自动重试、自动回退或其他分区写入。
+
+### 移植说明
+
+最终设备安装只写入 `boot_a`，但本版本是源码级内核移植：包括 W200DS 配置与 OEM
+模块 ABI、SukiSU/SUSFS/KPM 集成、Full LTO 构建、KernelPatch 后链接，以及在匹配的
+OEM boot 中只替换 kernel。普通使用者请按 [`PORTING.md`](PORTING.md) 安装发布版；
+完整分层、恢复包与历史 Magisk 方案的关系见
+[`PORTING-HELPER.md`](PORTING-HELPER.md)。
 
 ## English
 
@@ -49,10 +57,19 @@ RC1 boot ramdisks are byte-identical.
 
 ### Acceptance status
 
-RC1 passed module loading, three normal reboots, two cold boots, more than 72
+RC1 passed SukiSU module-framework loading, three normal reboots, two cold boots, more than 72
 hours of operation and hardware checks on the one tested device. GA also passed
 host equivalence, reproducibility and one exact `boot_a` adoption. Post-boot
 checks passed for `v0.2ga1@w200ds`, slot A, normal mode, SELinux Enforcing,
-ordinary ADB Shell, SukiSU Manager, the existing active modules and ADB Root
+ordinary ADB Shell, SukiSU Manager, the SukiSU module framework and ADB Root
 disabled by default. There was no automatic retry, rollback or other-partition
 write.
+
+### Porting notes
+
+Final installation writes only `boot_a`, but this release is a source-level
+kernel port: W200DS configuration and OEM module ABI, SukiSU/SUSFS/KPM
+integration, Full LTO build, KernelPatch post-link and kernel-only replacement
+inside the matching OEM boot. Use [`PORTING.md`](PORTING.md) to install the
+release, and see [`PORTING-HELPER.md`](PORTING-HELPER.md) for the complete
+layering and the relationship to the recovery package and previous Magisk setup.

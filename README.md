@@ -27,8 +27,9 @@ SUSFS 2.2.0 inline hook、SukiSU 模块框架和 KernelPatch runtime KPM。它�
 **W200DS 专用内核源码与可复现构建工程**，不是 ROM、通用 GKI、一键 Root 工具、
 固件包、救砖包或第三方模块合集。
 
-Manager APK、Magisk/KernelSU 模块、OEM 固件、分区备份、FDL loader、密钥和私有
-测试日志均不在本仓库中。
+Manager APK、第三方模块、OEM 固件、分区备份、FDL loader、密钥和私有
+测试日志均不在本仓库中。模块组合、应用列表、账号、keybox、认证数据和个人配置属于
+使用者环境，不进入发布基线，也不应默认提交到 Issue。
 
 > [!CAUTION]
 > 只有下表中的设备、固件、活动槽位和 `boot_a` 大小全部一致时才可使用。
@@ -67,10 +68,10 @@ Manager APK、Magisk/KernelSU 模块、OEM 固件、分区备份、FDL loader、
 | 隐藏 SELinux 修改 | ✅ 已实现 | Linux 5.4 原生只读 clean-view；不削弱实际策略 |
 | KernelSU ADB Root | ✅ 已实现 | 由 Manager 显式启用；默认保持关闭 |
 
-`v0.2.0-rc1` 已在唯一受测设备完成模块重启持久性、3 次普通重启、2 次冷启动、超过
+`v0.2.0-rc1` 已在唯一受测设备完成 SukiSU 模块框架重启加载、3 次普通重启、2 次冷启动、超过
 72 小时运行及硬件功能验收。`v0.2.0` 与 RC1 仅相差 4 个发布标记字节，并已通过一次
 精确 `boot_a` 写入采用：`v0.2ga1@w200ds`、A 槽、normal、SELinux Enforcing、普通
-ADB Shell、SukiSU Manager、既有活动模块及 ADB Root 默认关闭均通过。应用、模块、
+ADB Shell、SukiSU Manager、SukiSU 模块框架及 ADB Root 默认关闭均通过。应用、第三方模块、
 服务端策略或固件更新后结果可能变化。
 
 ### 获取源码与发布物
@@ -111,6 +112,10 @@ PowerShell 7：
 没有发布资产、哈希不一致或文件不是 64 MiB 时，不要刷入。
 
 ### 快速构建
+
+安装预编译发布版请先阅读面向普通使用者的
+[PORTING.md](Documentation/w200ds/PORTING.md)；复现源码构建、理解 OEM boot 分层或排错时，
+再查阅 [PORTING-HELPER.md](Documentation/w200ds/PORTING-HELPER.md)。
 
 受测环境为 Ubuntu 22.04 / WSL2。源码路径必须只含 ASCII，且不能包含空格或冒号。
 
@@ -214,6 +219,8 @@ fastboot reboot
 
 | 文档 | 内容 |
 |---|---|
+| [PORTING.md](Documentation/w200ds/PORTING.md) | 已解锁 W200DS 的发布版安装、Manager、模块与回退步骤 |
+| [PORTING-HELPER.md](Documentation/w200ds/PORTING-HELPER.md) | OEM boot、源码集成、ABI、重打包与 Magisk 迁移参考 |
 | [BUILDING.md](Documentation/w200ds/BUILDING.md) | 固定工具链、构建与输出身份 |
 | [INSTALL.md](Documentation/w200ds/INSTALL.md) | 安装前置条件和最小刷入流程 |
 | [RECOVERY.md](Documentation/w200ds/RECOVERY.md) | 回退准备与停止条件 |
@@ -268,8 +275,10 @@ framework and KernelPatch runtime KPM. It is a **device-specific kernel source
 and reproducible build project**, not a ROM, generic GKI, one-click root tool,
 firmware package, rescue bundle or module collection.
 
-Manager APKs, Magisk/KernelSU modules, OEM firmware, partition backups, FDL
-loaders, keys and private test logs are deliberately excluded.
+Manager APKs, third-party modules, OEM firmware, partition backups, FDL
+loaders, keys and private test logs are deliberately excluded. Module stacks,
+app lists, accounts, keyboxes, attestation data, and personal configuration are
+user-environment data; they are outside release acceptance and default issues.
 
 > [!CAUTION]
 > Use this project only when the device, firmware, active slot and `boot_a` size
@@ -310,12 +319,12 @@ fingerprint match.
 | Hide SELinux modifications | ✅ Implemented | Native Linux 5.4 read-only clean view; policy is not weakened |
 | KernelSU ADB Root | ✅ Implemented | Explicit Manager opt-in; disabled by default |
 
-`v0.2.0-rc1` passed module reboot persistence, three normal reboots, two cold
+`v0.2.0-rc1` passed SukiSU module-framework loading across reboot, three normal reboots, two cold
 boots, more than 72 hours of operation and hardware checks on the one tested
 device. `v0.2.0` differs from RC1 by only four release-marker bytes and passed
 one exact `boot_a` adoption: `v0.2ga1@w200ds`, slot A, normal mode, SELinux
-Enforcing, ordinary ADB Shell, SukiSU Manager, the existing active modules and
-ADB Root disabled by default all passed. Results can change with an app, module,
+Enforcing, ordinary ADB Shell, SukiSU Manager, the SukiSU module framework and ADB Root
+disabled by default all passed. Results can change with an app, module,
 server policy or firmware update.
 
 ### Getting the source and artifacts
@@ -360,6 +369,11 @@ Do not flash when no release asset exists, the digest differs, or the image is
 not exactly 64 MiB.
 
 ### Quick build
+
+To install the prebuilt release, start with the beginner-friendly
+[PORTING.md](Documentation/w200ds/PORTING.md). For source reproduction, OEM
+boot layering, or troubleshooting, use
+[PORTING-HELPER.md](Documentation/w200ds/PORTING-HELPER.md).
 
 The accepted environment was Ubuntu 22.04 under WSL2. Keep the source in an
 ASCII-only path without spaces or colons.
@@ -475,6 +489,8 @@ See [KNOWN-LIMITATIONS.md](Documentation/w200ds/KNOWN-LIMITATIONS.md).
 
 | Document | Purpose |
 |---|---|
+| [PORTING.md](Documentation/w200ds/PORTING.md) | Release installation, Manager, modules, and rollback for an unlocked W200DS |
+| [PORTING-HELPER.md](Documentation/w200ds/PORTING-HELPER.md) | OEM boot, source integration, ABI, repack, and Magisk migration reference |
 | [BUILDING.md](Documentation/w200ds/BUILDING.md) | Pinned toolchain, build and output identities |
 | [INSTALL.md](Documentation/w200ds/INSTALL.md) | Preconditions and minimal flashing flow |
 | [RECOVERY.md](Documentation/w200ds/RECOVERY.md) | Rollback preparation and stop conditions |
