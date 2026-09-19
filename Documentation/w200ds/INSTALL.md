@@ -23,7 +23,7 @@ adb reboot bootloader
 fastboot getvar current-slot
 fastboot getvar is-userspace
 fastboot getvar partition-size:boot_a
-fastboot flash boot_a w200ds-sukisu-v0.2.0-rc1-boot.img
+fastboot flash boot_a w200ds-sukisu-v0.2.0-boot.img
 fastboot reboot
 ```
 
@@ -54,7 +54,7 @@ adb reboot bootloader
 fastboot getvar current-slot
 fastboot getvar is-userspace
 fastboot getvar partition-size:boot_a
-fastboot flash boot_a w200ds-sukisu-v0.2.0-rc1-boot.img
+fastboot flash boot_a w200ds-sukisu-v0.2.0-boot.img
 fastboot reboot
 ```
 

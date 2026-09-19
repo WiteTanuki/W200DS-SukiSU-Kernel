@@ -30,7 +30,7 @@ export ANDROID_NDK_HOME=/absolute/path/to/android-ndk-r29
   "$PWD/out/Image.kpm-postlinked"
 ./mark-release-image.py \
   "$PWD/out/Image.kpm-postlinked" \
-  "$PWD/out/w200ds-sukisu-v0.2.0-rc1-Image"
+  "$PWD/out/w200ds-sukisu-v0.2.0-Image"
 ```
 
 每个辅助程序都会拒绝不符合预期的固定输入，并核对验收输出的 SHA-256。该流程有意只支持一种源码、配置和工具链组合；任何输入发生变化时，都应通过新的审查与测试周期更新发布清单，而不是削弱检查来让构建通过。
@@ -40,7 +40,7 @@ export ANDROID_NDK_HOME=/absolute/path/to/android-ndk-r29
 本仓库不分发 OEM 固件或 Magisk。请提供你自己的、与设备匹配的原厂 boot，以及已测试的同一 `magiskboot` 可执行文件：
 
 ```sh
-./pack-w200ds-boot.sh STOCK_BOOT w200ds-sukisu-v0.2.0-rc1-Image MAGISKBOOT OUTPUT_BOOT
+./pack-w200ds-boot.sh STOCK_BOOT w200ds-sukisu-v0.2.0-Image MAGISKBOOT OUTPUT_BOOT
 ```
 
 该辅助程序只替换内核；重解包后原厂 ramdisk 必须逐字节保持一致；同时检查 64 MiB 容器大小和验收输出哈希。它不会连接或写入设备。
@@ -49,10 +49,11 @@ export ANDROID_NDK_HOME=/absolute/path/to/android-ndk-r29
 
 - 原始 Image：`be5f744963f9eca5b7b84e37747cb191aabc28d4019d403e31f43f221edaf16e`
 - 后链接 Image：`4bf47964827f138c6941b0e0c90f8500763f3b7b9b2ac60e52770c9590152ff7`
-- 已标记 Image：`cea4afc177e56e93c8fbc7ed794767595b6c0d826e7e40b2e2f99d514b3cebfb`
-- 受测 Boot 镜像：`1cd91b2119848a674c3473a6a609926591c5e0b37d48bf2aa95fcd6af3fceb6c`
+- 已标记 Image：`19532e425e2893cdd983df069db48ec90699ace4c065cf745af3a56ca3ca90b7`
+- 主机验收 Boot 镜像：`a4e2fc24488ce806ce5282ee438ca1d8761c635edb1d02a20e7fa4cd98320e3e`
 
-以上是 `v0.2.0-rc1` 的主机验收身份；该 boot 已在唯一受测设备完成采用。
+以上是 `v0.2.0` 的固定发布身份。它与 `v0.2.0-rc1` 仅相差 4 个发布标记字节，
+并已在唯一受测设备完成一次精确 `boot_a` 采用。
 
 ---
 
@@ -86,7 +87,7 @@ export ANDROID_NDK_HOME=/absolute/path/to/android-ndk-r29
   "$PWD/out/Image.kpm-postlinked"
 ./mark-release-image.py \
   "$PWD/out/Image.kpm-postlinked" \
-  "$PWD/out/w200ds-sukisu-v0.2.0-rc1-Image"
+  "$PWD/out/w200ds-sukisu-v0.2.0-Image"
 ```
 
 Each helper refuses unexpected fixed inputs and checks the accepted output
@@ -100,7 +101,7 @@ The repository does not distribute OEM firmware or Magisk. Supply your own
 matching stock boot and the exact tested `magiskboot` executable:
 
 ```sh
-./pack-w200ds-boot.sh STOCK_BOOT w200ds-sukisu-v0.2.0-rc1-Image MAGISKBOOT OUTPUT_BOOT
+./pack-w200ds-boot.sh STOCK_BOOT w200ds-sukisu-v0.2.0-Image MAGISKBOOT OUTPUT_BOOT
 ```
 
 The helper replaces only the kernel, requires the stock ramdisk to remain
@@ -111,8 +112,9 @@ the accepted output hash. It never connects to or writes a device.
 
 - Raw Image: `be5f744963f9eca5b7b84e37747cb191aabc28d4019d403e31f43f221edaf16e`
 - Post-linked Image: `4bf47964827f138c6941b0e0c90f8500763f3b7b9b2ac60e52770c9590152ff7`
-- Marked Image: `cea4afc177e56e93c8fbc7ed794767595b6c0d826e7e40b2e2f99d514b3cebfb`
-- Accepted boot image: `1cd91b2119848a674c3473a6a609926591c5e0b37d48bf2aa95fcd6af3fceb6c`
+- Marked Image: `19532e425e2893cdd983df069db48ec90699ace4c065cf745af3a56ca3ca90b7`
+- Device-accepted boot image: `a4e2fc24488ce806ce5282ee438ca1d8761c635edb1d02a20e7fa4cd98320e3e`
 
-These are the host-accepted identities for `v0.2.0-rc1`; the boot passed
+These are the fixed release identities for `v0.2.0`. It differs from
+`v0.2.0-rc1` by only four release-marker bytes and passed one exact `boot_a`
 adoption on the one tested device.

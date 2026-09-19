@@ -48,15 +48,15 @@ Manager APK、Magisk/KernelSU 模块、OEM 固件、分区备份、FDL loader、
 | SELinux | Enforcing |
 | SukiSU Manager / 驱动代号 | 40856 |
 | SUSFS | 2.2.0，inline hook |
-| 候选标记 | `v0.2rc1@w200ds` |
-| 候选源码标签 | [`v0.2.0-rc1`](https://github.com/WiteTanuki/W200DS-SukiSU-Kernel/tree/v0.2.0-rc1) |
+| 发布标记 | `v0.2ga1@w200ds` |
+| 发布源码标签 | [`v0.2.0`](https://github.com/WiteTanuki/W200DS-SukiSU-Kernel/tree/v0.2.0) |
 
 任一项目不同都应视为 **不兼容且未经测试**。名称相似、同为 Android 13 或分区
 大小相同，都不能代替完整指纹核对。
 
-### v0.2.0-rc1 功能矩阵
+### v0.2.0 功能矩阵
 
-| 能力 | `v0.2.0-rc1` | 说明 |
+| 能力 | `v0.2.0` | 说明 |
 |---|---:|---|
 | SukiSU / KernelSU Root | ✅ 已实现 | Manager 识别与授权路径已在同源码血统设备版本验证 |
 | SukiSU 模块 | ✅ 已实现 | 模块框架与重启加载已在同源码血统设备版本验证 |
@@ -67,17 +67,18 @@ Manager APK、Magisk/KernelSU 模块、OEM 固件、分区备份、FDL loader、
 | 隐藏 SELinux 修改 | ✅ 已实现 | Linux 5.4 原生只读 clean-view；不削弱实际策略 |
 | KernelSU ADB Root | ✅ 已实现 | 由 Manager 显式启用；默认保持关闭 |
 
-精确 SHA-256 的 `v0.2.0-rc1` boot 已在唯一受测设备完成启动、标记采用、Manager
-识别、SELinux Enforcing 与普通 ADB Shell 验收；同源码血统设备版本还完成了模块
-重启持久性、ADB Root 开关、SELinux clean-view 和回退验证。应用、模块、服务端
-策略或固件更新后结果可能变化。
+`v0.2.0-rc1` 已在唯一受测设备完成模块重启持久性、3 次普通重启、2 次冷启动、超过
+72 小时运行及硬件功能验收。`v0.2.0` 与 RC1 仅相差 4 个发布标记字节，并已通过一次
+精确 `boot_a` 写入采用：`v0.2ga1@w200ds`、A 槽、normal、SELinux Enforcing、普通
+ADB Shell、SukiSU Manager、既有活动模块及 ADB Root 默认关闭均通过。应用、模块、
+服务端策略或固件更新后结果可能变化。
 
 ### 获取源码与发布物
 
 ```sh
 git clone https://github.com/WiteTanuki/W200DS-SukiSU-Kernel.git
 cd W200DS-SukiSU-Kernel
-git checkout v0.2.0-rc1
+git checkout v0.2.0
 ```
 
 - 源码以 Git 标签为准；`main` 可能包含标签之后的文档修订。
@@ -87,24 +88,24 @@ git checkout v0.2.0-rc1
 - 不要使用聊天群、网盘或论坛中的同名镜像，除非 SHA-256 与本仓库记录完全一致。
 - SukiSU Manager 和模块请从各自官方项目获取，本仓库不捆绑 APK 或模块。
 
-v0.2.0-rc1 受测 boot 身份：
+v0.2.0 设备验收 boot 身份：
 
 ```text
-SHA-256  1cd91b2119848a674c3473a6a609926591c5e0b37d48bf2aa95fcd6af3fceb6c
+SHA-256  a4e2fc24488ce806ce5282ee438ca1d8761c635edb1d02a20e7fa4cd98320e3e
 Size     67,108,864 bytes
-Marker   v0.2rc1@w200ds
+Marker   v0.2ga1@w200ds
 ```
 
 Linux / WSL：
 
 ```sh
-sha256sum w200ds-sukisu-v0.2.0-rc1-boot.img
+sha256sum w200ds-sukisu-v0.2.0-boot.img
 ```
 
 PowerShell 7：
 
 ```powershell
-(Get-FileHash .\w200ds-sukisu-v0.2.0-rc1-boot.img -Algorithm SHA256).Hash.ToLowerInvariant()
+(Get-FileHash .\w200ds-sukisu-v0.2.0-boot.img -Algorithm SHA256).Hash.ToLowerInvariant()
 ```
 
 没有发布资产、哈希不一致或文件不是 64 MiB 时，不要刷入。
@@ -148,8 +149,8 @@ export ANDROID_NDK_HOME=/absolute/path/to/android-ndk-r29
   "$PWD/out/Image.kpm-postlinked"
 ./mark-release-image.py \
   "$PWD/out/Image.kpm-postlinked" \
-  "$PWD/out/w200ds-sukisu-v0.2.0-rc1-Image"
-./pack-w200ds-boot.sh STOCK_BOOT "$PWD/out/w200ds-sukisu-v0.2.0-rc1-Image" MAGISKBOOT OUTPUT_BOOT
+  "$PWD/out/w200ds-sukisu-v0.2.0-Image"
+./pack-w200ds-boot.sh STOCK_BOOT "$PWD/out/w200ds-sukisu-v0.2.0-Image" MAGISKBOOT OUTPUT_BOOT
 ```
 
 脚本会拒绝错误 config、工具链或输出哈希。源码、配置或工具链变化后，应建立新
@@ -174,12 +175,12 @@ adb reboot bootloader
 fastboot getvar current-slot
 fastboot getvar is-userspace
 fastboot getvar partition-size:boot_a
-fastboot flash boot_a w200ds-sukisu-v0.2.0-rc1-boot.img
+fastboot flash boot_a w200ds-sukisu-v0.2.0-boot.img
 fastboot reboot
 ```
 
 只写入 `boot_a` 一次。不要使用 `fastboot boot`，不要切换槽位、写其他分区或自动
-重试。Android 启动后，先确认 `v0.2rc1@w200ds`、slot A、SELinux Enforcing 和 Manager
+重试。Android 启动后，先确认 `v0.2ga1@w200ds`、slot A、SELinux Enforcing 和 Manager
 显示“工作中”，再逐个启用模块。
 
 ### 回退原则
@@ -198,9 +199,9 @@ fastboot reboot
 
 - 仅支持上表中的 W200DS / P720P01 固件；没有 B 槽或其他固件的测试结论。
 - Root 隐藏是“尽力而为”，不能保证通过所有本地检测或未来远程完整性策略。
-- 此候选包含可选的 Linux 5.4 SELinux status clean-view 与 KernelSU ADB Root；两者都
+- 此版本包含可选的 Linux 5.4 SELinux status clean-view 与 KernelSU ADB Root；两者都
   不改变 SELinux Enforcing，ADB Root 默认关闭，且不能保证规避所有环境检测。
-- 此候选不包含 embedded KPM；普通 Root/隐藏使用不需要 KPM。
+- 此版本不包含 embedded KPM；普通 Root/隐藏使用不需要 KPM。
 - runtime KPM 是高级接口，普通 Root/隐藏使用不需要 KPM；仓库不提供 KPM payload。
 - OEM `/system/bin/su` 与 `/system/bin/sh` 的别名/共享 inode 行为不能仅靠替换
   内核安全解决；隐藏该 inode 也可能误伤 Shell。
@@ -216,9 +217,9 @@ fastboot reboot
 | [BUILDING.md](Documentation/w200ds/BUILDING.md) | 固定工具链、构建与输出身份 |
 | [INSTALL.md](Documentation/w200ds/INSTALL.md) | 安装前置条件和最小刷入流程 |
 | [RECOVERY.md](Documentation/w200ds/RECOVERY.md) | 回退准备与停止条件 |
-| [KNOWN-LIMITATIONS.md](Documentation/w200ds/KNOWN-LIMITATIONS.md) | 当前候选能力边界 |
+| [KNOWN-LIMITATIONS.md](Documentation/w200ds/KNOWN-LIMITATIONS.md) | 当前版本能力边界 |
 | [SOURCE-REVISIONS.md](Documentation/w200ds/SOURCE-REVISIONS.md) | 上游版本、内核与 OEM ABI 身份 |
-| [RELEASE-NOTES-v0.2.0-rc1.md](Documentation/w200ds/RELEASE-NOTES-v0.2.0-rc1.md) | v0.2.0-rc1 变更、候选身份与设备门 |
+| [RELEASE-NOTES-v0.2.0.md](Documentation/w200ds/RELEASE-NOTES-v0.2.0.md) | v0.2.0 变更、产物身份与设备门 |
 | [THIRD-PARTY-NOTICES.md](Documentation/w200ds/THIRD-PARTY-NOTICES.md) | 第三方来源、许可和排除项 |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | 提交补丁的最小规范 |
 
@@ -289,16 +290,16 @@ loaders, keys and private test logs are deliberately excluded.
 | SELinux | Enforcing |
 | SukiSU Manager / driver code | 40856 |
 | SUSFS | 2.2.0, inline hook |
-| Candidate marker | `v0.2rc1@w200ds` |
-| Candidate source tag | [`v0.2.0-rc1`](https://github.com/WiteTanuki/W200DS-SukiSU-Kernel/tree/v0.2.0-rc1) |
+| Release marker | `v0.2ga1@w200ds` |
+| Release source tag | [`v0.2.0`](https://github.com/WiteTanuki/W200DS-SukiSU-Kernel/tree/v0.2.0) |
 
 Treat any difference as **incompatible and untested**. A similar model name,
 Android 13, or the same partition size is not a substitute for an exact
 fingerprint match.
 
-### v0.2.0-rc1 feature matrix
+### v0.2.0 feature matrix
 
-| Capability | `v0.2.0-rc1` | Notes |
+| Capability | `v0.2.0` | Notes |
 |---|---:|---|
 | SukiSU / KernelSU root | ✅ Implemented | Manager detection and grants were tested on the same source lineage |
 | SukiSU modules | ✅ Implemented | Module framework and reboot loading were tested on the same source lineage |
@@ -309,18 +310,20 @@ fingerprint match.
 | Hide SELinux modifications | ✅ Implemented | Native Linux 5.4 read-only clean view; policy is not weakened |
 | KernelSU ADB Root | ✅ Implemented | Explicit Manager opt-in; disabled by default |
 
-The exact `v0.2.0-rc1` boot SHA-256 passed boot, marker adoption, Manager
-detection, SELinux Enforcing and ordinary ADB Shell checks on the one tested
-device. Builds from the same source lineage also passed module reboot
-persistence, the ADB Root toggle, SELinux clean view and rollback checks.
-Results can change with an app, module, server policy or firmware update.
+`v0.2.0-rc1` passed module reboot persistence, three normal reboots, two cold
+boots, more than 72 hours of operation and hardware checks on the one tested
+device. `v0.2.0` differs from RC1 by only four release-marker bytes and passed
+one exact `boot_a` adoption: `v0.2ga1@w200ds`, slot A, normal mode, SELinux
+Enforcing, ordinary ADB Shell, SukiSU Manager, the existing active modules and
+ADB Root disabled by default all passed. Results can change with an app, module,
+server policy or firmware update.
 
 ### Getting the source and artifacts
 
 ```sh
 git clone https://github.com/WiteTanuki/W200DS-SukiSU-Kernel.git
 cd W200DS-SukiSU-Kernel
-git checkout v0.2.0-rc1
+git checkout v0.2.0
 ```
 
 - Git tags are the source authority; `main` may contain documentation changes
@@ -333,24 +336,24 @@ git checkout v0.2.0-rc1
 - Obtain SukiSU Manager and modules from their own official projects. This
   repository does not bundle APKs or modules.
 
-Accepted v0.2.0-rc1 boot identity:
+Device-accepted v0.2.0 boot identity:
 
 ```text
-SHA-256  1cd91b2119848a674c3473a6a609926591c5e0b37d48bf2aa95fcd6af3fceb6c
+SHA-256  a4e2fc24488ce806ce5282ee438ca1d8761c635edb1d02a20e7fa4cd98320e3e
 Size     67,108,864 bytes
-Marker   v0.2rc1@w200ds
+Marker   v0.2ga1@w200ds
 ```
 
 Linux / WSL:
 
 ```sh
-sha256sum w200ds-sukisu-v0.2.0-rc1-boot.img
+sha256sum w200ds-sukisu-v0.2.0-boot.img
 ```
 
 PowerShell 7:
 
 ```powershell
-(Get-FileHash .\w200ds-sukisu-v0.2.0-rc1-boot.img -Algorithm SHA256).Hash.ToLowerInvariant()
+(Get-FileHash .\w200ds-sukisu-v0.2.0-boot.img -Algorithm SHA256).Hash.ToLowerInvariant()
 ```
 
 Do not flash when no release asset exists, the digest differs, or the image is
@@ -396,8 +399,8 @@ export ANDROID_NDK_HOME=/absolute/path/to/android-ndk-r29
   "$PWD/out/Image.kpm-postlinked"
 ./mark-release-image.py \
   "$PWD/out/Image.kpm-postlinked" \
-  "$PWD/out/w200ds-sukisu-v0.2.0-rc1-Image"
-./pack-w200ds-boot.sh STOCK_BOOT "$PWD/out/w200ds-sukisu-v0.2.0-rc1-Image" MAGISKBOOT OUTPUT_BOOT
+  "$PWD/out/w200ds-sukisu-v0.2.0-Image"
+./pack-w200ds-boot.sh STOCK_BOOT "$PWD/out/w200ds-sukisu-v0.2.0-Image" MAGISKBOOT OUTPUT_BOOT
 ```
 
 The wrappers reject unexpected configs, toolchains and output digests. When
@@ -423,12 +426,12 @@ adb reboot bootloader
 fastboot getvar current-slot
 fastboot getvar is-userspace
 fastboot getvar partition-size:boot_a
-fastboot flash boot_a w200ds-sukisu-v0.2.0-rc1-boot.img
+fastboot flash boot_a w200ds-sukisu-v0.2.0-boot.img
 fastboot reboot
 ```
 
 Write `boot_a` once. Do not use `fastboot boot`, switch slots, touch another
-partition or automate retries. After Android starts, confirm `v0.2rc1@w200ds`, slot A,
+partition or automate retries. After Android starts, confirm `v0.2ga1@w200ds`, slot A,
 SELinux Enforcing and a working SukiSU Manager before enabling modules one by
 one.
 
@@ -452,10 +455,10 @@ or unattended rescue script.
   other-firmware test claim.
 - Root concealment is best-effort and cannot guarantee every local check or
   future remote integrity policy.
-- This candidate includes optional Linux 5.4 SELinux status clean-view and
+- This release includes optional Linux 5.4 SELinux status clean-view and
   KernelSU ADB Root support. Neither disables SELinux Enforcing, ADB Root is off
   by default, and neither guarantees acceptance by every environment check.
-- This candidate embeds no KPM; ordinary root and concealment do not require KPM.
+- This release embeds no KPM; ordinary root and concealment do not require KPM.
 - Runtime KPM is an advanced interface and is unnecessary for ordinary root or
   concealment use; no KPM payload is provided.
 - The OEM `/system/bin/su` and `/system/bin/sh` alias/shared-inode behavior cannot
@@ -475,9 +478,9 @@ See [KNOWN-LIMITATIONS.md](Documentation/w200ds/KNOWN-LIMITATIONS.md).
 | [BUILDING.md](Documentation/w200ds/BUILDING.md) | Pinned toolchain, build and output identities |
 | [INSTALL.md](Documentation/w200ds/INSTALL.md) | Preconditions and minimal flashing flow |
 | [RECOVERY.md](Documentation/w200ds/RECOVERY.md) | Rollback preparation and stop conditions |
-| [KNOWN-LIMITATIONS.md](Documentation/w200ds/KNOWN-LIMITATIONS.md) | Current candidate capability boundaries |
+| [KNOWN-LIMITATIONS.md](Documentation/w200ds/KNOWN-LIMITATIONS.md) | Current release capability boundaries |
 | [SOURCE-REVISIONS.md](Documentation/w200ds/SOURCE-REVISIONS.md) | Upstream, kernel and OEM ABI identities |
-| [RELEASE-NOTES-v0.2.0-rc1.md](Documentation/w200ds/RELEASE-NOTES-v0.2.0-rc1.md) | v0.2.0-rc1 changes, candidate identities and device gate |
+| [RELEASE-NOTES-v0.2.0.md](Documentation/w200ds/RELEASE-NOTES-v0.2.0.md) | v0.2.0 changes, artifact identities and device gate |
 | [THIRD-PARTY-NOTICES.md](Documentation/w200ds/THIRD-PARTY-NOTICES.md) | Provenance, licensing and excluded material |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Minimum patch-submission rules |
 

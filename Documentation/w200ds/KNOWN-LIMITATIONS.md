@@ -14,6 +14,9 @@
 - 仅替换内核无法解决 OEM `/system/bin/su` 与 `/system/bin/sh` 的别名行为；隐藏共享 inode 也可能影响 Shell。
 - 验收 boot 保留了来自受支持 OEM boot 镜像且未经修改的 ramdisk。二进制发布的再分发规则需要由用户自行评估。
 - 模块兼容性取决于具体模块及其配置。私有模块和第三方模块不属于本仓库的支持范围。
+- 未验证系统 OTA 更新；更新固件前应恢复匹配的原厂 boot，并重新核对支持指纹。
+- 已验证的恢复范围限于 A 槽 `boot_a`。Recovery 菜单中的“通过 ADB/SD 卡安装更新”
+  不等同于 boot 镜像恢复；本仓库不提供 B 槽或紧急下载模式的通用操作方案。
 
 ---
 
@@ -35,3 +38,8 @@
   OEM boot image. Users must assess redistribution rules for the binary release.
 - Module compatibility depends on the module and its configuration. Private or
   third-party modules are outside this repository.
+- System OTA updates are untested. Restore the matching stock boot and re-check
+  the supported fingerprint before applying firmware updates.
+- The validated recovery scope is limited to slot A `boot_a`. Recovery menu
+  options for ADB/SD-card updates are not boot-image recovery, and this
+  repository provides no generic slot-B or emergency-download procedure.

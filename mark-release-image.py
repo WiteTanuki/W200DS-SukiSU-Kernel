@@ -11,9 +11,9 @@ if target.exists():
     raise SystemExit(f"refusing to overwrite: {target}")
 data = source.read_bytes()
 old = b"release@w200ds"
-new = b"v0.2rc1@w200ds"
+new = b"v0.2ga1@w200ds"
 expected_input = "4bf47964827f138c6941b0e0c90f8500763f3b7b9b2ac60e52770c9590152ff7"
-expected_output = "cea4afc177e56e93c8fbc7ed794767595b6c0d826e7e40b2e2f99d514b3cebfb"
+expected_output = "19532e425e2893cdd983df069db48ec90699ace4c065cf745af3a56ca3ca90b7"
 if hashlib.sha256(data).hexdigest() != expected_input:
     raise SystemExit("unexpected post-linked Image SHA-256")
 if len(old) != len(new) or data.count(old) != 2 or data.count(new):
